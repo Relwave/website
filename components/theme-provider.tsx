@@ -15,18 +15,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // Read from localStorage or check document class (set by inline script)
+    const stored = localStorage.getItem('relwave-theme')
+    const isDarkMode = stored === 'dark' ||
+      (!stored && document.documentElement.classList.contains('dark'))
+
+    setIsDark(isDarkMode)
     setMounted(true)
-    const darkMode = document.documentElement.classList.contains('dark') ||
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    setIsDark(darkMode)
   }, [])
 
   useEffect(() => {
     if (!mounted) return
+
     if (isDark) {
       document.documentElement.classList.add('dark')
+      localStorage.setItem('relwave-theme', 'dark')
     } else {
       document.documentElement.classList.remove('dark')
+      localStorage.setItem('relwave-theme', 'light')
     }
   }, [isDark, mounted])
 

@@ -1,25 +1,21 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import { Header } from '@/components/header'
 import { HeroSection } from '@/components/hero-section'
-import { ScreenshotsSection } from '@/components/screenshots-section'
+import { HowItWorksSection } from '@/components/how-it-works-section'
 import { FeaturesSection } from '@/components/features-section'
+import { RoadmapSection } from '@/components/roadmap-section'
 import { DownloadSection } from '@/components/download-section'
 import { Footer } from '@/components/footer'
-import { Separator } from '@/components/ui/separator'
 
 export default function Home() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background relative overflow-hidden">
-        {/* Background glow effect */}
-        <div className="hero-glow animate-glow" />
-
+      <div className="min-h-screen bg-background">
         <Header />
         <HeroSection />
-        <ScreenshotsSection />
-        <Separator />
+        <HowItWorksSection />
         <FeaturesSection />
-        <Separator />
+        {/* <RoadmapSection /> */}
         <DownloadSection />
         <Footer />
       </div>
