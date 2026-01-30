@@ -27,6 +27,7 @@ export function Header() {
           <nav className="flex items-center gap-1">
             <Link
               href="/contact"
+              data-umami-event="header_contact"
               className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-all"
             >
               Contact
@@ -35,6 +36,7 @@ export function Header() {
               href="https://github.com/Relwave"
               target="_blank"
               rel="noopener noreferrer"
+              data-umami-event="header_github"
               className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-all"
             >
               GitHub

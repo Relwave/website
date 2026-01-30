@@ -36,6 +36,7 @@ export function DownloadSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="group relative p-8 rounded-2xl border border-border/40 bg-background/60 backdrop-blur-sm shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-[1.05] hover:-translate-y-1"
+            data-umami-event="Download Windows"
           >
             {/* Gradient Overlay */}
             <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -54,6 +55,7 @@ export function DownloadSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="group relative p-8 rounded-2xl border border-border/40 bg-background/60 backdrop-blur-sm shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-[1.05] hover:-translate-y-1"
+            data-umami-event="Download Linux"
           >
             {/* Gradient Overlay */}
             <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -77,7 +79,7 @@ export function DownloadSection() {
             className="h-12 px-8 text-base font-medium shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
             asChild
           >
-            <Link href="https://github.com/Relwave/relwave-app/releases/tag/v0.1.0-beta.5" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/Relwave/relwave-app/releases/tag/v0.1.0-beta.5" target="_blank" rel="noopener noreferrer" data-umami-event="Download Now Button">
               <Download className="w-4 h-4 mr-2.5" />
               Download Now
             </Link>
@@ -91,6 +93,7 @@ export function DownloadSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+            data-umami-event="View All Releases"
           >
             View all releases
             <ArrowRight className="w-3.5 h-3.5" />

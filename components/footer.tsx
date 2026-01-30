@@ -39,6 +39,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="group p-3 rounded-lg border border-border/40 bg-background/60 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:border-primary/30 hover:shadow-lg transition-all hover:scale-105"
             aria-label="View on GitHub"
+            data-umami-event="footer_github"
           >
             <Github className="w-5 h-5 group-hover:rotate-12 transition-transform" />
           </Link>
@@ -58,6 +59,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
+              data-umami-event="footer_github_link"
             >
               Documentation
             </Link>
@@ -66,12 +68,14 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
+              data-umami-event="footer_report_issue"
             >
               Report Issue
             </Link>
             <Link
               href="/contact"
               className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
+              data-umami-event="footer_contact"
             >
               Contact
             </Link>
@@ -80,6 +84,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
+              data-umami-event="footer_license"
             >
               License
             </Link>

@@ -53,7 +53,7 @@ export function HeroSection() {
             className="h-12 px-8 text-base font-medium shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
             asChild
           >
-            <Link href="https://github.com/Relwave/relwave-app/releases" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/Relwave/relwave-app/releases" target="_blank" rel="noopener noreferrer" data-umami-event="download-button-click">
               <Download className="w-4 h-4 mr-2.5" />
               Download Now
             </Link>
@@ -64,7 +64,7 @@ export function HeroSection() {
             className="h-12 px-8 text-base font-medium border-border/60 hover:bg-accent/50 transition-all hover:scale-[1.02]"
             asChild
           >
-            <Link href="https://github.com/Relwave/relwave-app" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/Relwave/relwave-app" target="_blank" rel="noopener noreferrer" data-umami-event="view-source-button-click">
               <Github className="w-4 h-4 mr-2.5" />
               View Source
             </Link>
