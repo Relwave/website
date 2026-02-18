@@ -3,6 +3,7 @@ import {
   Code,
   Database,
   Download,
+  FolderArchiveIcon,
   GitBranch,
   Newspaper,
   Notebook,
@@ -23,6 +24,18 @@ const features = [
     icon: <PartyPopper className="w-5 h-5" />,
     title: "Self Hosted",
     description: "No annoying server downtime. Everything is in your computer. Your data is yours.",
+    size: "normal"
+  },
+  {
+    icon: <GitBranch className="w-5 h-5" />,
+    title: "Version Control",
+    description: "Track schema changes with Git integration. View diffs, commit history, and rollback to previous versions.",
+    size: "normal"
+  },
+  {
+    icon: <FolderArchiveIcon className="w-5 h-5" />,
+    title: "Project Management",
+    description: "Organize connections, queries, and ER diagrams into projects. Save and share project configurations.",
     size: "normal"
   },
   {

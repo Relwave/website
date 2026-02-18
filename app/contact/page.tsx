@@ -41,12 +41,12 @@ export default function ContactPage() {
                             </p>
 
                             <Link
-                                href="mailto:yashh5967@gmail.com"
+                                href="mailto:opensourceyash@gmail.com"
                                 className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 font-medium"
                                 data-umami-event="contact_email_click"
                             >
                                 <Mail className="w-5 h-5" />
-                                yashh5967@gmail.com
+                                opensourceyash@gmail.com
                             </Link>
                         </div>
                     </div>

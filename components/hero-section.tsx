@@ -43,7 +43,7 @@ export function HeroSection() {
 
         {/* Subheading */}
         <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed animate-fade-in-up delay-300">
-          A modern database tool built with Tauri. Connect and visualize PostgreSQL, MySQL, and MariaDB with ease.
+          A powerful, cross-platform desktop application for database management with native Git version control
         </p>
 
         {/* CTA Buttons */}

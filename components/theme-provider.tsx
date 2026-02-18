@@ -36,7 +36,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [isDark, mounted])
 
-  const toggleTheme = () => setIsDark(prev => !prev)
+  const toggleTheme = () => {
+    // Check if View Transitions API is supported
+    if (!document.startViewTransition) {
+      setIsDark(prev => !prev)
+      return
+    }
+
+    // Use View Transitions API for smooth theme change
+    document.startViewTransition(() => {
+      setIsDark(prev => !prev)
+    })
+  }
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme, mounted }}>

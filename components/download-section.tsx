@@ -79,7 +79,7 @@ export function DownloadSection() {
             className="h-12 px-8 text-base font-medium shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
             asChild
           >
-            <Link href="https://github.com/Relwave/relwave-app/releases/tag/v0.1.0-beta.5" target="_blank" rel="noopener noreferrer" data-umami-event="Download Now Button">
+            <Link href="https://github.com/Relwave/relwave-app/releases/tag/v0.2.0-beta.2" target="_blank" rel="noopener noreferrer" data-umami-event="Download Now Button">
               <Download className="w-4 h-4 mr-2.5" />
               Download Now
             </Link>
