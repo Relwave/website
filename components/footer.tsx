@@ -1,93 +1,108 @@
-import { Github, Heart } from 'lucide-react'
-import Link from 'next/link'
-import { Separator } from './ui/separator'
+import { FacebookIcon, GithubIcon, InstagramIcon, TwitterIcon, YoutubeIcon } from 'lucide-react'
 
-export function Footer() {
+import { Separator } from '@/components/ui/separator'
+import Image from 'next/image'
+
+const footerSections = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Features', href: '/features' },
+      // { label: 'Download', href: '/download' },
+      { label: 'Status', href: '/status' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      // { label: 'Documentation', href: '/documentation' },
+      // { label: 'Blog', href: '/blog' },
+      // { label: 'Community', href: '/community' },
+      { label: 'Support', href: 'https://github.com/Relwave/relwave-app/issues/new' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      // { label: 'About', href: '/about' },
+      // { label: 'Careers', href: '/careers' },
+      { label: 'Contact', href: '/contact' },
+      // { label: 'Partners', href: '/partners' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'License', href: 'https://github.com/Relwave/relwave-app/blob/master/LICENSE' },
+    ],
+  },
+]
+
+const socialLinks = [
+  { icon: GithubIcon, href: 'http://github.com/Relwave', label: 'GitHub' },
+]
+
+export const Footer = () => {
   return (
-    <footer className="relative border-t border-border/40 py-16 px-6 overflow-hidden">
-      {/* Layered Background */}
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-size-[32px_32px] pointer-events-none" />
+    <footer className='border-t'>
+      <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
+        {/* Top Section - Logo and Description */}
+        <div className='mb-8 grid gap-8 md:grid-cols-5'>
+          <div className='md:col-span-1'>
+            <a href='#' className='flex items-center gap-2'>
+              <Image src='/icon.png' alt='Logo' width={32} height={32} className='rounded-sm' />
+              <span className='font-semibold text-lg'>RelWave</span>
+            </a>
+            <p className='mt-2 text-sm text-muted-foreground'>
+              Modern database management and visualization for everyone.
+            </p>
+          </div>
 
-      <div className="max-w-6xl mx-auto relative">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
-          {/* Logo & Name */}
-          <div className="flex items-center gap-3 group">
-            <div className="relative w-8 h-8 rounded-lg bg-linear-to-b from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20 group-hover:border-primary/40 transition-all">
-              <img src="/icon.png" alt="RelWave" className="w-5 h-5 object-contain" />
+          {/* Footer Sections */}
+          {footerSections.map((section) => (
+            <div key={section.title}>
+              <h3 className='font-semibold text-sm mb-3'>{section.title}</h3>
+              <ul className='space-y-2'>
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className='text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground'
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <span className="font-semibold text-lg tracking-tight bg-linear-to-b from-foreground to-foreground/70 bg-clip-text text-transparent">
-              RelWave
-            </span>
-          </div>
-
-          {/* Tagline */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground/70 font-medium">
-            <span>Open source database visualizer</span>
-            <span className="text-muted-foreground/30">•</span>
-            <span className="flex items-center gap-1.5">
-              Built with
-              <Heart className="w-3.5 h-3.5 text-red-400/80 fill-red-400/20 animate-pulse" />
-              using Tauri + React
-            </span>
-          </div>
-
-          {/* Social Links */}
-          <Link
-            href="https://github.com/Relwave/relwave-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-3 rounded-lg border border-border/40 bg-background/60 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:border-primary/30 hover:shadow-lg transition-all hover:scale-105"
-            aria-label="View on GitHub"
-            data-umami-event="footer_github"
-          >
-            <Github className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-          </Link>
+          ))}
         </div>
 
-        {/* Divider */}
-        <Separator />
-        {/* Bottom Section */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground/60 font-medium">
-            © {new Date().getFullYear()} RelWave. Released under MIT License.
+        <Separator className='my-8' />
+
+        {/* Bottom Section - Copyright and Social */}
+        <div className='flex flex-col-reverse gap-6 sm:flex-row sm:items-center sm:justify-between'>
+          <p className='text-xs text-muted-foreground text-center sm:text-left'>
+            {`© ${new Date().getFullYear()} RelWave. All rights reserved. Made with ❤️ for better workflows.`}
           </p>
 
-          <div className="flex items-center gap-6 text-xs">
-            <Link
-              href="https://github.com/Relwave/relwave-app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
-              data-umami-event="footer_github_link"
-            >
-              Documentation
-            </Link>
-            <Link
-              href="https://github.com/Relwave/relwave-app/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
-              data-umami-event="footer_report_issue"
-            >
-              Report Issue
-            </Link>
-            <Link
-              href="/contact"
-              className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
-              data-umami-event="footer_contact"
-            >
-              Contact
-            </Link>
-            <Link
-              href="https://github.com/Relwave/relwave-app/blob/master/LICENSE"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground/60 hover:text-foreground transition-colors font-medium"
-              data-umami-event="footer_license"
-            >
-              License
-            </Link>
+          {/* Social Links */}
+          <div className='flex justify-center gap-4 sm:justify-end'>
+            {socialLinks.map((social) => {
+              const Icon = social.icon
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className='text-muted-foreground transition-colors duration-200 hover:text-foreground'
+                >
+                  <Icon className='h-5 w-5' />
+                </a>
+              )
+            })}
           </div>
         </div>
       </div>

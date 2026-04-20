@@ -1,28 +1,20 @@
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Download } from 'lucide-react'
 import Link from 'next/link'
+import { Badge } from './ui/badge'
 
 export function DownloadSection() {
   return (
     <section id="download" className="relative py-28 px-6 overflow-hidden">
-      {/* Layered Background Effects */}
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-size-[32px_32px] pointer-events-none" />
-
-      {/* Radial Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-3xl mx-auto text-center relative">
+      <div className="max-w-3xl mx-auto text-start relative">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full mb-6 tracking-wider uppercase border border-primary/20">
+          <Badge className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full mb-6 tracking-wider uppercase border border-primary/20 animate-fade-in-up">
             <Download className="w-3 h-3" />
             Download
-          </div>
+          </Badge>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-5 leading-tight">
-            <span className="bg-linear-to-b from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
-              Get Started Today
-            </span>
+            Get Started Today
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
             Download RelWave and start exploring your databases in minutes
@@ -73,21 +65,17 @@ export function DownloadSection() {
         </div >
 
         {/* CTA Button */}
-        < div className="mb-8" >
+        < div className="mb-8 flex flex-col gap-12 items-center jus" >
           <Button
             size="lg"
-            className="h-12 px-8 text-base font-medium shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
+            className="h-12 px-8 text-base font-medium text-center items-center shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
             asChild
           >
-            <Link href="https://github.com/Relwave/relwave-app/releases/tag/v0.2.0-beta.2" target="_blank" rel="noopener noreferrer" data-umami-event="Download Now Button">
+            <Link href="https://github.com/Relwave/relwave-app/releases/tag/v0.5.0-beta.2" target="_blank" rel="noopener noreferrer" data-umami-event="Download Now Button">
               <Download className="w-4 h-4 mr-2.5" />
               Download Now
             </Link>
           </Button>
-        </div >
-
-        {/* All Releases Link */}
-        < div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border/30 bg-background/30 backdrop-blur-sm" >
           <Link
             href="https://github.com/Relwave/relwave-app/releases"
             target="_blank"

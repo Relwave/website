@@ -1,4 +1,5 @@
 import { Download, Database, Eye, Sparkles } from 'lucide-react'
+import { Badge } from './ui/badge'
 
 const steps = [
     {
@@ -30,17 +31,12 @@ const steps = [
 export function HowItWorksSection() {
     return (
         <section id="how-it-works" className="relative py-24 px-6 overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 bg-linear-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-size-[32px_32px] pointer-events-none" />
-
             <div className="max-w-5xl mx-auto relative">
                 {/* Section Header */}
-                <div className="text-center mb-20">
-                    <div className="inline-flex items-center gap-2 text-xs mb-6 px-3 py-1.5 rounded-full border border-border/40 bg-background/50 backdrop-blur-sm shadow-sm animate-fade-in-up">
-                        <Sparkles className="w-3.5 h-3.5 text-primary" />
-                        <span className="text-muted-foreground/80 font-medium">Simple & Intuitive</span>
-                    </div>
+                <div className="text-start mb-20">
+                    <Badge className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold text-primary bg-primary/10 rounded-full mb-6 tracking-wider uppercase border border-primary/20 animate-fade-in-up">
+                        <Sparkles className="w-3.5 h-3.5 text-primary" />Simple & Intuitive
+                    </Badge>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 animate-fade-in-up delay-100">
                         <span className="bg-linear-to-b from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
                             How It Works
@@ -97,12 +93,12 @@ export function HowItWorksSection() {
                                         <>
                                             {/* Horizontal line going to center */}
                                             <div
-                                                className={`hidden md:block absolute top-1/2 ${isEven ? '-right-6' : '-left-6'} w-6 h-0.5 bg-gradient-to-r ${isEven ? 'from-border/60 to-primary/40' : 'from-primary/40 to-border/60'}`}
+                                                className={`hidden md:block absolute top-1/2 ${isEven ? '-right-6' : '-left-6'} w-6 h-0.5 bg-linear-to-r ${isEven ? 'from-border/60 to-primary/40' : 'from-primary/40 to-border/60'}`}
                                             />
 
                                             {/* Vertical line going down (for even cards) or down-left (for odd cards) */}
                                             {isEven && (
-                                                <div className="hidden md:block absolute -right-6 top-1/2 w-0.5 h-[calc(50%+3rem)] bg-gradient-to-b from-primary/40 to-border/60" />
+                                                <div className="hidden md:block absolute -right-6 top-1/2 w-0.5 h-[calc(50%+3rem)] bg-linear-to-b from-primary/40 to-border/60" />
                                             )}
 
                                             {/* Connector dot */}

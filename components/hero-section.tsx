@@ -5,16 +5,6 @@ import Link from 'next/link'
 export function HeroSection() {
   return (
     <section className="relative pt-32 pb-28 px-6 overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-linear-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
-
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-size-[32px_32px] pointer-events-none" />
-
-      {/* Animated Glow Orbs */}
-      <div className="absolute top-20 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse-glow pointer-events-none" />
-      <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow delay-500 pointer-events-none" />
-
       <div className="max-w-3xl mx-auto text-center relative">
         {/* Badge Section */}
         <div className="inline-flex items-center gap-2 text-xs mb-8 px-3 py-1.5 rounded-full border border-border/40 bg-background/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow animate-fade-in-down">
@@ -25,18 +15,10 @@ export function HeroSection() {
           <span className="text-muted-foreground/80 font-medium">Cross-Platform</span>
         </div>
 
-        {/* Project Name */}
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-primary animate-fade-in-up delay-100">
-          RelWave
-        </h1>
-
         {/* Main Heading */}
         <p className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05] animate-fade-in-up delay-200">
           <span className="bg-linear-to-b from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
             Explore Your Database,
-          </span>
-          <br />
-          <span className="bg-linear-to-b from-muted-foreground/50 to-muted-foreground/30 bg-clip-text text-transparent">
             Like Never Before
           </span>
         </p>

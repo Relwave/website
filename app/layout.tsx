@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Manrope, Sora } from "next/font/google";
+import { ThemeProvider } from '@/components/theme-provider'
+import { Footer } from '@/components/footer'
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-sans",
+const manrope = Manrope({
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const sora = Sora({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,8 +45,11 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script defer src="https://cloud.umami.is/script.js" data-website-id="6e859e8c-177a-4cd4-be7a-6c20ef39579d"></script>
       </head>
-      <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
-        {children}
+      <body className={`${manrope.variable} ${sora.variable} font-sans antialiased`}>
+        <ThemeProvider>
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
