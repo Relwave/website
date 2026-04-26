@@ -138,7 +138,7 @@ export default function PrivacyPage() {
             </p>
             <div className="bg-muted p-4 rounded-lg space-y-2 text-sm">
               <p className="font-semibold">RelWave Privacy Team</p>
-              <p>Email: <a href="mailto:privacy@relwave.com" className="text-primary hover:underline">privacy@relwave.com</a></p>
+              <p>Email: <a href="mailto:opensourceyash@gmail.com" className="text-primary hover:underline">opensourceyash@gmail.com</a></p>
               <p>GitHub: <a href="https://github.com/relwave" className="text-primary hover:underline">github.com/relwave</a></p>
             </div>
           </section>

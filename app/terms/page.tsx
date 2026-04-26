@@ -159,7 +159,7 @@ export default function TermsPage() {
             </p>
             <div className="bg-muted p-4 rounded-lg space-y-2 text-sm">
               <p className="font-semibold">RelWave Legal</p>
-              <p>Email: <a href="mailto:legal@relwave.com" className="text-primary hover:underline">legal@relwave.com</a></p>
+              <p>Email: <a href="mailto:opensourceyash@gmail.com" className="text-primary hover:underline">opensourceyash@gmail.com</a></p>
               <p>GitHub: <a href="https://github.com/relwave" className="text-primary hover:underline">github.com/relwave</a></p>
             </div>
           </section>
