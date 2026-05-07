@@ -2,7 +2,7 @@
 
 This document provides a comprehensive breakdown of all features and capabilities in RelWave. For installation and setup instructions, see the main [README](README.md).
 
-**Tech Stack:** Tauri + React 18 + TypeScript + Tailwind CSS + shadcn/ui + React Query + ReactFlow + Recharts + CodeMirror + better-sqlite3
+**Tech Stack:** Tauri + Node.js sidecar + React 18 + TypeScript + Tailwind CSS + shadcn/ui + React Query + ReactFlow + Recharts + CodeMirror + better-sqlite3
 
 ---
 
@@ -32,7 +32,7 @@ This document provides a comprehensive breakdown of all features and capabilitie
 ### SQLite-Specific Features
 
 - **File-based connections** — no server required; connect directly to `.db`, `.sqlite`, `.sqlite3`, `.s3db` files
-- **Native file picker** — Tauri file dialog for browsing and selecting database files
+- **Native file picker** — desktop file dialog for browsing and selecting database files
 - **Read-only mode** — open databases in read-only mode when write access isn't needed
 - **PRAGMA-based introspection** — uses `table_xinfo`, `foreign_key_list`, `index_list`, and `index_info` for full schema discovery
 - **Synchronous driver** — uses `better-sqlite3` for efficient, synchronous access to SQLite databases
@@ -476,7 +476,7 @@ RelWave includes native Git integration powered by `simple-git`, providing a ful
 
 ### Loading and Feedback
 
-- Bridge loader displayed during Tauri backend initialization
+- Bridge loader displayed during sidecar initialization
 - Skeleton loaders for data tables
 - Progress indicators for long-running queries
 - Toast notifications: success (green), error (red), warning (yellow), info (blue)
@@ -509,7 +509,7 @@ RelWave includes native Git integration powered by `simple-git`, providing a ful
 - Optimistic updates for responsive UI
 - Loading, error, success, and refetching state management
 
-### Tauri Bridge API
+### Sidecar Bridge API
 
 - Type-safe API calls to the Node.js bridge
 - Session management for concurrent queries
@@ -519,7 +519,7 @@ RelWave includes native Git integration powered by `simple-git`, providing a ful
 
 ### Event-Driven Architecture
 
-All database and Git operations use a JSON-RPC protocol over stdin/stdout. The bridge process runs independently of the UI, providing process isolation and crash resilience.
+All database and Git operations use a JSON-RPC protocol over stdin/stdout. The sidecar process runs independently of the UI, providing process isolation and crash resilience.
 
 ---
 
@@ -544,7 +544,7 @@ All database and Git operations use a JSON-RPC protocol over stdin/stdout. The b
 
 ## Cross-Platform Support
 
-### Desktop (Tauri)
+### Desktop (Tauri + Sidecar)
 
 - Custom 32px title bar with draggable area and window controls
 - All pages use `h-[calc(100vh-32px)]` for proper layout

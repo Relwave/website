@@ -62,6 +62,34 @@ export function HeroSection() {
             </Link>
           </Button>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 mb-12"
+        >
+          {[
+            { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+            { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+            { name: 'MariaDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg' },
+            { name: 'SQLite', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg' }
+          ].map(db => (
+            <div key={db.name} className="flex items-center gap-2 group cursor-default">
+              <img src={db.icon} alt={db.name} className="w-6 h-6" />
+              <span className="text-xs font-bold tracking-widest uppercase">{db.name}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-xs text-muted-foreground/50 font-bold tracking-widest uppercase"
+        >
+          Available for Windows & Linux
+        </motion.p>
       </div>
 
       <motion.div

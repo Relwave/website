@@ -4,7 +4,6 @@ import { ProductDemo } from '@/components/product-demo'
 import { FeatureGrid } from '@/components/feature-grid'
 import { VersionTimeline } from '@/components/version-timeline'
 import { CTASection } from '@/components/cta-section'
-import { Footer } from '@/components/footer'
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
         <VersionTimeline />
         <CTASection />
       </main>
-      <Footer />
     </div>
   )
 }

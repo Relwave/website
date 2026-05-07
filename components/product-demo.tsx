@@ -3,59 +3,37 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Database, 
-  Search, 
   History, 
   Layout, 
-  Plus, 
   Terminal,
   Activity,
-  GitCommit,
-  Layers
+  Layers,
+  MousePointer2,
+  Share2
 } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
 export function ProductDemo() {
-  const [activeTab, setActiveTab] = useState('schema')
-  const [selectedTable, setSelectedTable] = useState('users')
+  const [activeTab, setActiveTab] = useState('builder')
 
   const tables = [
     { name: 'users', rows: 1240, status: 'synced' },
-    { name: 'products', rows: 450, status: 'modified' },
     { name: 'orders', rows: 890, status: 'synced' },
-    { name: 'categories', rows: 12, status: 'synced' },
-  ]
-
-  const schema = {
-    users: [
-      { name: 'id', type: 'uuid', primary: true },
-      { name: 'email', type: 'varchar(255)', unique: true },
-      { name: 'created_at', type: 'timestamp' },
-      { name: 'is_active', type: 'boolean' },
-    ],
-    products: [
-      { name: 'id', type: 'uuid', primary: true },
-      { name: 'name', type: 'varchar(255)' },
-      { name: 'price', type: 'decimal' },
-      { name: 'v2_new_field', type: 'jsonb', status: 'new' },
-    ]
-  }
-
-  const history = [
-    { id: '8a2b1c', user: 'yashs', msg: 'Add v2_new_field to products', time: '2m ago' },
-    { id: 'f4e3d2', user: 'relwave-bot', msg: 'Initial schema migration', time: '1h ago' },
+    { name: 'products', rows: 450, status: 'modified' },
+    { name: 'subscriptions', rows: 12, status: 'synced' },
   ]
 
   return (
     <section className="py-24 px-6 bg-accent/30 border-y border-border/40">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">Interactive Demo</Badge>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">The Modern DB Experience</h2>
+          <Badge variant="outline" className="mb-4">Live Product Experience</Badge>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Built for Your Workflow</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Experience a database client that understands your workflow. 
-            No more manual tracking. Everything is versioned by default.
+            From visual query building to advanced SQL execution. 
+            Relwave provides the tools you need for modern database management.
           </p>
         </div>
 
@@ -73,56 +51,50 @@ export function ProductDemo() {
                 production-main
               </Badge>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
-                <input 
-                  type="text" 
-                  placeholder="Search schema..." 
-                  className="bg-background border border-border/60 rounded-md px-8 py-1 text-xs w-48 focus:outline-none focus:ring-1 focus:ring-primary"
-                />
-              </div>
-            </div>
           </div>
 
-          <div className="flex h-[500px]">
+          <div className="flex h-[550px]">
             {/* Sidebar */}
-            <div className="w-64 border-r border-border/60 flex flex-col">
+            <div className="w-64 border-r border-border/60 flex flex-col bg-muted/20">
               <div className="p-3 border-b border-border/60">
-                <Button variant="outline" size="sm" className="w-full justify-start gap-2 h-8 text-xs font-medium">
-                  <Plus className="w-3.5 h-3.5" />
-                  New Connection
-                </Button>
+                <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-2">Navigation</div>
+                <div className="space-y-1">
+                  {[
+                    { icon: Layout, label: 'Dashboard' },
+                    { icon: Terminal, label: 'SQL Workspace' },
+                    { icon: MousePointer2, label: 'Query Builder' },
+                    { icon: Share2, label: 'ER Diagram' },
+                  ].map(item => (
+                    <div key={item.label} className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-xs cursor-pointer transition-colors ${item.label === 'Query Builder' ? 'bg-primary/10 text-primary' : 'hover:bg-muted/50'}`}>
+                      <item.icon className="w-3.5 h-3.5" />
+                      {item.label}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="flex-1 overflow-y-auto p-2">
                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider px-2 py-2">Tables</div>
                 {tables.map(table => (
-                  <button
+                  <div
                     key={table.name}
-                    onClick={() => setSelectedTable(table.name)}
-                    className={`w-full flex items-center justify-between px-2 py-1.5 rounded-md text-xs transition-colors ${
-                      selectedTable === table.name ? 'bg-primary/10 text-primary' : 'hover:bg-muted/50'
-                    }`}
+                    className="w-full flex items-center justify-between px-2 py-1.5 rounded-md text-xs hover:bg-muted/50 transition-colors"
                   >
                     <div className="flex items-center gap-2">
                       <Layers className="w-3.5 h-3.5 opacity-70" />
                       {table.name}
                     </div>
-                    {table.status === 'modified' && (
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                    )}
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col bg-background/50">
               <div className="flex border-b border-border/60">
                 {[
-                  { id: 'schema', label: 'Schema', icon: Layout },
+                  { id: 'builder', label: 'Query Builder', icon: MousePointer2 },
+                  { id: 'sql', label: 'SQL Editor', icon: Terminal },
                   { id: 'history', label: 'History', icon: History },
-                  { id: 'terminal', label: 'SQL Console', icon: Terminal },
                 ].map(tab => (
                   <button
                     key={tab.id}
@@ -135,7 +107,7 @@ export function ProductDemo() {
                     {tab.label}
                     {activeTab === tab.id && (
                       <motion.div 
-                        layoutId="activeTab"
+                        layoutId="activeTabDemo"
                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                       />
                     )}
@@ -143,52 +115,90 @@ export function ProductDemo() {
                 ))}
               </div>
 
-              <div className="flex-1 overflow-hidden p-6 bg-background/30">
+              <div className="flex-1 overflow-hidden relative">
                 <AnimatePresence mode="wait">
-                  {activeTab === 'schema' && (
+                  {activeTab === 'builder' && (
                     <motion.div
-                      key="schema"
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -10 }}
-                      className="space-y-4"
+                      key="builder"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 flex flex-col p-6"
                     >
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-bold flex items-center gap-2">
-                          {selectedTable}
-                          <Badge variant="outline" className="text-[10px]">Table</Badge>
-                        </h3>
-                        <Button size="sm" variant="outline" className="h-8 gap-2">
-                          <GitCommit className="w-3.5 h-3.5" />
-                          Commit Changes
-                        </Button>
+                      <div className="flex-1 relative rounded-xl border border-border/60 bg-muted/10 overflow-hidden flex items-center justify-center">
+                        <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'radial-gradient(var(--border) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+                        
+                        <div className="flex items-center gap-8 relative z-10">
+                          <Card className="w-48 p-0 overflow-hidden border-primary/50 shadow-xl">
+                            <div className="bg-primary/10 px-3 py-1.5 text-[10px] font-bold border-b border-primary/20">users</div>
+                            <div className="p-2 space-y-1">
+                              {['id', 'email', 'created_at'].map(f => (
+                                <div key={f} className="flex items-center gap-2 text-[9px]">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                  {f}
+                                </div>
+                              ))}
+                            </div>
+                          </Card>
+                          
+                          <div className="w-16 h-px bg-primary/40 relative">
+                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background border border-border rounded-full p-1">
+                                <Share2 className="w-3 h-3 text-primary" />
+                             </div>
+                          </div>
+
+                          <Card className="w-48 p-0 overflow-hidden border-border/60 shadow-xl opacity-80">
+                            <div className="bg-muted px-3 py-1.5 text-[10px] font-bold border-b border-border/60">orders</div>
+                            <div className="p-2 space-y-1">
+                              {['id', 'user_id', 'total'].map(f => (
+                                <div key={f} className="flex items-center gap-2 text-[9px]">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-border" />
+                                  {f}
+                                </div>
+                              ))}
+                            </div>
+                          </Card>
+                        </div>
                       </div>
-                      
-                      <div className="border border-border/60 rounded-lg overflow-hidden">
-                        <table className="w-full text-xs text-left">
-                          <thead className="bg-muted/50 border-b border-border/60">
-                            <tr>
-                              <th className="px-4 py-2 font-medium">Column Name</th>
-                              <th className="px-4 py-2 font-medium">Type</th>
-                              <th className="px-4 py-2 font-medium">Constraints</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {(schema[selectedTable as keyof typeof schema] || []).map((col, i) => (
-                              <tr key={i} className={`border-b border-border/40 last:border-0 ${col.status === 'new' ? 'bg-emerald-500/5' : ''}`}>
-                                <td className="px-4 py-3 flex items-center gap-2">
-                                  {col.name}
-                                  {col.status === 'new' && <Badge variant="default" className="bg-emerald-500/20 text-emerald-500 hover:bg-emerald-500/20 text-[9px] py-0 h-4">NEW</Badge>}
-                                </td>
-                                <td className="px-4 py-3 font-mono opacity-70">{col.type}</td>
-                                <td className="px-4 py-3">
-                                  {col.primary && <Badge variant="outline" className="text-[9px]">PK</Badge>}
-                                  {col.unique && <Badge variant="outline" className="text-[9px] ml-1">UQ</Badge>}
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
+
+                      <div className="mt-6 p-4 rounded-xl border border-border/60 bg-black/90 font-mono text-xs text-primary">
+                        <div className="flex justify-between mb-2">
+                           <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Generated SQL</span>
+                           <Button variant="ghost" size="sm" className="h-6 text-[9px]">Copy SQL</Button>
+                        </div>
+                        SELECT users.email, orders.total FROM users <br />
+                        INNER JOIN orders ON users.id = orders.user_id <br />
+                        WHERE orders.total &gt; 100;
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {activeTab === 'sql' && (
+                    <motion.div
+                      key="sql"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="absolute inset-0 p-6 flex flex-col"
+                    >
+                      <div className="flex-1 rounded-xl border border-border/60 bg-muted/20 font-mono p-4 text-xs">
+                        <div className="flex items-center gap-4 mb-4 pb-2 border-b border-border/40 text-muted-foreground">
+                          <span className="text-primary font-bold">Query 1</span>
+                          <span>+ New Tab</span>
+                        </div>
+                        <div className="text-foreground">
+                          <span className="text-purple-400">SELECT</span> * <span className="text-purple-400">FROM</span> products <br />
+                          <span className="text-purple-400">WHERE</span> category = <span className="text-emerald-400">&apos;Electronics&apos;</span> <br />
+                          <span className="text-purple-400">ORDER BY</span> price <span className="text-purple-400">DESC</span>;
+                        </div>
+                      </div>
+                      <div className="h-1/3 mt-6 border border-border/60 rounded-xl bg-background overflow-hidden">
+                        <div className="bg-muted px-4 py-2 text-[10px] font-bold border-b border-border/60 flex justify-between">
+                          <span>Results (450 rows)</span>
+                          <span className="text-muted-foreground">Execution time: 1.2ms</span>
+                        </div>
+                        <div className="p-4 flex items-center justify-center text-muted-foreground text-xs h-full">
+                           Showing first 10 rows...
+                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -196,42 +206,29 @@ export function ProductDemo() {
                   {activeTab === 'history' && (
                     <motion.div
                       key="history"
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -10 }}
-                      className="space-y-4"
-                    >
-                      <div className="space-y-3">
-                        {history.map((item, i) => (
-                          <div key={i} className="flex gap-4 p-3 rounded-lg border border-border/60 bg-muted/30">
-                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                              <Activity className="w-4 h-4 text-primary" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between mb-1">
-                                <span className="text-xs font-bold font-mono text-primary">{item.id}</span>
-                                <span className="text-[10px] text-muted-foreground">{item.time}</span>
-                              </div>
-                              <p className="text-xs font-medium mb-1 truncate">{item.msg}</p>
-                              <div className="text-[10px] text-muted-foreground">Committed by {item.user}</div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {activeTab === 'terminal' && (
-                    <motion.div
-                      key="terminal"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="bg-black/90 rounded-lg p-4 font-mono text-xs text-emerald-500 h-full"
+                      className="absolute inset-0 p-6 space-y-3 overflow-y-auto"
                     >
-                      <div className="mb-2 text-white/50">-- Schema change detected</div>
-                      <div className="mb-2">ALTER TABLE products ADD COLUMN v2_new_field JSONB;</div>
-                      <div className="mb-2 text-white/50">-- Generating diff...</div>
-                      <div className="text-emerald-500 cursor-blink">_</div>
+                      {[
+                        { id: '8a2b1c', user: 'yashs', msg: 'Add v2_new_field to products', time: '2m ago' },
+                        { id: 'f4e3d2', user: 'relwave-bot', msg: 'Initial schema migration', time: '1h ago' },
+                        { id: 'c3d4e5', user: 'sarah_m', msg: 'Update user auth constraints', time: '3h ago' },
+                      ].map((item, i) => (
+                        <div key={i} className="flex gap-4 p-3 rounded-lg border border-border/60 bg-muted/30">
+                          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                            <Activity className="w-4 h-4 text-primary" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs font-bold font-mono text-primary">{item.id}</span>
+                              <span className="text-[10px] text-muted-foreground">{item.time}</span>
+                            </div>
+                            <p className="text-xs font-medium mb-1 truncate">{item.msg}</p>
+                            <div className="text-[10px] text-muted-foreground">Committed by {item.user}</div>
+                          </div>
+                        </div>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -243,4 +240,5 @@ export function ProductDemo() {
     </section>
   )
 }
+
 

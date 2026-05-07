@@ -15,7 +15,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Read from localStorage or check document class (set by inline script)
     const stored = localStorage.getItem('relwave-theme')
     const isDarkMode = stored === 'dark' ||
       (!stored && document.documentElement.classList.contains('dark'))

@@ -1,6 +1,5 @@
 import {
     Sparkles,
-    Database,
     Timer,
     MessageSquare,
     Laptop,
