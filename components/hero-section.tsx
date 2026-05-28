@@ -19,7 +19,7 @@ export function HeroSection() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
-          Relwave v1.0 Beta is here
+          Relwave v0.6.5 Beta is here
           <ChevronRight className="w-3 h-3" />
         </motion.div>
 
@@ -39,7 +39,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
         >
-          Relwave brings the power of version control to database management. 
+          Relwave brings the power of version control to database management.
           Branch, commit, and diff your schema with the same confidence you have with code.
         </motion.p>
 
