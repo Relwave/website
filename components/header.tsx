@@ -75,10 +75,6 @@ export function Header() {
               <Moon className="w-4.5 h-4.5" />
             )}
           </Button>
-
-          <Button size="sm" className="hidden sm:flex">
-            Get Started
-          </Button>
         </div>
       </div>
     </motion.header>

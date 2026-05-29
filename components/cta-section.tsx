@@ -51,6 +51,7 @@ export function CTASection() {
             <div className="text-sm font-bold tracking-widest uppercase">PostgreSQL</div>
             <div className="text-sm font-bold tracking-widest uppercase">MySQL</div>
             <div className="text-sm font-bold tracking-widest uppercase">SQLite</div>
+            <div className="text-sm font-bold tracking-widest uppercase">MariaDB</div>
           </div>
         </div>
       </div>
