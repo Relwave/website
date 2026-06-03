@@ -4,8 +4,22 @@ import { Github, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { HeroVisual } from './hero-visual'
+import { useEffect, useState } from 'react'
 
 export function HeroSection() {
+
+  const [version, setVersion] = useState('')
+
+  useEffect(() => {
+    async function fetchVersion() {
+      const res = await fetch('/api/version')
+      const data = await res.json()
+      console.log('Latest version:', data.version)
+      setVersion(data.version)
+    }
+    fetchVersion()
+  }, [])
+
   return (
     <section className="relative pt-32 pb-20 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
@@ -19,7 +33,7 @@ export function HeroSection() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
-          Relwave v0.6.5 Beta is here
+          Relwave {version} is here
           <ChevronRight className="w-3 h-3" />
         </motion.div>
 
