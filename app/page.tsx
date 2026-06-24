@@ -1,6 +1,6 @@
 import { Header } from '@/components/header'
 import { HeroSection } from '@/components/hero-section'
-import { ProductDemo } from '@/components/product-demo'
+import { Product } from '@/components/product'
 import { FeatureGrid } from '@/components/feature-grid'
 import { VersionTimeline } from '@/components/version-timeline'
 import { CTASection } from '@/components/cta-section'
@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <ProductDemo />
+        <Product />
         <FeatureGrid />
         <VersionTimeline />
         <CTASection />
