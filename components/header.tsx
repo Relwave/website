@@ -29,24 +29,16 @@ export function Header() {
             </div>
             <span className="text-lg font-bold tracking-tight">Relwave</span>
           </Link>
-
-          <nav className="hidden md:flex items-center gap-1">
-            <Link
-              href="/features"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Features
-            </Link>
-            <Link
-              href="/contact"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Contact
-            </Link>
-          </nav>
         </div>
 
         <div className="flex items-center gap-3">
+          <Link
+            href="/contact"
+            className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Contact
+          </Link>
+
           <Link
             href="https://github.com/Relwave"
             target="_blank"
@@ -57,6 +49,7 @@ export function Header() {
           </Link>
 
           <div className="h-4 w-px bg-border/60 mx-1 hidden sm:block" />
+
 
           <Button
             size="icon"

@@ -4,7 +4,7 @@ import { Github, Twitter, Linkedin } from 'lucide-react'
 import Image from 'next/image'
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = 2026
 
   return (
     <footer className="bg-background border-t border-border/40 pt-20 pb-10 px-6">
@@ -36,7 +36,6 @@ export function Footer() {
         <div>
           <h4 className="font-bold mb-6 text-sm uppercase tracking-wider">Product</h4>
           <ul className="space-y-4 text-sm">
-            <li><Link href="/features" className="text-muted-foreground hover:text-foreground transition-colors">Features</Link></li>
             <li><Link href="https://github.com/Relwave/relwave-app/releases" target='_blank' className="text-muted-foreground hover:text-foreground transition-colors">Release Notes</Link></li>
           </ul>
         </div>
@@ -45,7 +44,7 @@ export function Footer() {
           <h4 className="font-bold mb-6 text-sm uppercase tracking-wider">Resources</h4>
           <ul className="space-y-4 text-sm">
             <li><Link href="http://github.com/Relwave" target='_blank' className="text-muted-foreground hover:text-foreground transition-colors">GitHub Repository</Link></li>
-            <li><Link href="/features" className="text-muted-foreground hover:text-foreground transition-colors">Sponsorship</Link></li>
+            <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Sponsorship</Link></li>
           </ul>
         </div>
 

@@ -98,7 +98,7 @@ export const Data = ({ tables, activeTable, setActiveTable }: DataProps) => {
                             </div>
                             {[1, 2, 3, 4, 5, 6, 7].map(i => (
                                 <div key={i} className="grid grid-cols-4 p-2 text-xs border-b border-border/40 hover:bg-muted/20 text-muted-foreground">
-                                    <div className="px-2 truncate">usr_{Math.random().toString(36).substr(2, 8)}</div>
+                                    <div className="px-2 truncate">usr_8x{i}9y2z</div>
                                     <div className="px-2 truncate text-foreground">user{i}@example.com</div>
                                     <div className="px-2">{i === 1 ? <Badge variant="outline" className="text-[9px] py-0">ADMIN</Badge> : <Badge variant="secondary" className="text-[9px] py-0 bg-secondary/50">USER</Badge>}</div>
                                     <div className="px-2 font-mono text-[11px]">2025-10-{10 + i} 14:30:00</div>

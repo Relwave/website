@@ -23,12 +23,11 @@ export function CTASection() {
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
-            Stop Guessing. <br /> Start <span className="text-secondary">Version-controlling</span>.
+            Ready to manage your databases <br /> with <span className="text-secondary">confidence?</span>
           </h2>
 
           <p className="text-background/60 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
-            Manage your databases with the precision of Git. Built with Tauri and a sidecar Node.js architecture for responsive performance.
-            Native desktop experience for Windows & Linux.
+            Download the native desktop application today and experience a modern database workflow built for developers.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -46,13 +45,6 @@ export function CTASection() {
             </Button>
           </div>
 
-          <div className="mt-12 flex items-center gap-8 opacity-40 grayscale contrast-200">
-            {/* Mock Logo placeholders */}
-            <div className="text-sm font-bold tracking-widest uppercase">PostgreSQL</div>
-            <div className="text-sm font-bold tracking-widest uppercase">MySQL</div>
-            <div className="text-sm font-bold tracking-widest uppercase">SQLite</div>
-            <div className="text-sm font-bold tracking-widest uppercase">MariaDB</div>
-          </div>
         </div>
       </div>
     </section>

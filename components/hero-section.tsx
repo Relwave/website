@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button'
 import { Github, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { HeroVisual } from './hero-visual'
 import { useEffect, useState } from 'react'
 
 export function HeroSection() {
@@ -41,11 +40,22 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 max-w-4xl"
+          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 max-w-6xl leading-[1.1]"
         >
-          Git-like Control for your{' '}
-          <span className="text-primary italic">Database</span>
+          Database management, finally done right.
         </motion.h1>
+
+
+        {/* <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 max-w-4xl leading-[1.1]"
+        >
+          Database.<br />
+          Visualized.<br />
+          <span className="text-primary italic">Versioned.</span>
+        </motion.h1> */}
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -53,9 +63,18 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
         >
-          Relwave brings the power of version control to database management.
-          Branch, commit, and diff your schema with the same confidence you have with code.
+          A modern, native database client with visual schema editing,
+          Git integration, and AI-powered analysis. Fast because it's
+          built with Tauri — not Java, not Electron.
         </motion.p>
+        {/* <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
+        >
+          A modern database management platform for developers.
+        </motion.p> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -64,7 +83,7 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
         >
           <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full group">
-            <Link href="https://github.com/Relwave/relwave-app/releases" className="flex items-center gap-2">
+            <Link href="https://github.com/Relwave/relwave-app/releases/download/v0.9.0-rc-5/RelWave_0.9.0-rc-5_x64-setup.exe" className="flex items-center gap-2">
               Get Started for Free
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -76,44 +95,7 @@ export function HeroSection() {
             </Link>
           </Button>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 mb-12"
-        >
-          {[
-            { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
-            { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-            { name: 'MariaDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg' },
-            { name: 'SQLite', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg' }
-          ].map(db => (
-            <div key={db.name} className="flex items-center gap-2 group cursor-default">
-              <img src={db.icon} alt={db.name} className="w-6 h-6" />
-              <span className="text-xs font-bold tracking-widest uppercase">{db.name}</span>
-            </div>
-          ))}
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="text-xs text-muted-foreground/50 font-bold tracking-widest uppercase"
-        >
-          Available for Windows & Linux
-        </motion.p>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.4 }}
-        className="w-full max-w-5xl mx-auto mt-[-50px]"
-      >
-        <HeroVisual />
-      </motion.div>
     </section>
   )
 }

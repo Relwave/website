@@ -74,7 +74,7 @@ export function Product() {
                             </nav>
 
                             {/* Main Content Area */}
-                            <main className="flex-1 min-w-0 flex flex-col overflow-hidden ml-15 relative">
+                            <main className="flex-1 min-w-0 flex flex-col overflow-hidden ml-1 relative">
                                 <AnimatePresence mode="wait">
 
                                     {/* DATA VIEW PANEL */}
@@ -115,7 +115,7 @@ export function Product() {
                         </div>
 
                         {/* Status bar */}
-                        <div className="shrink-0 h-7 border-t border-border/30 bg-background/80 backdrop-blur-xl flex items-center px-2 pl-15 gap-4 min-w-0 z-50 relative">
+                        <div className="shrink-0 h-7 ml-2 border-t border-border/30 bg-background/80 backdrop-blur-xl flex items-center px-2 pl-15 gap-4 min-w-0 z-50 relative">
                             <div className="flex items-center gap-1.5 text-[10px] font-mono px-2 py-0.5 rounded-sm bg-muted/50 border border-border/50">
                                 <GitCommitHorizontal className="h-3 w-3" />
                                 <span>main</span>
