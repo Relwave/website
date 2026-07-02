@@ -88,7 +88,7 @@ export default function ContactPage() {
                 <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
                   {method.description}
                 </p>
-                <Button variant="outline" className="w-full rounded-xl group-hover:bg-primary group-hover:text-primary-foreground transition-all" asChild>
+                <Button variant="outline" className="w-full rounded-xl transition-all" asChild>
                   <Link href={method.href}>{method.action}</Link>
                 </Button>
               </motion.div>
@@ -96,28 +96,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="px-6 mt-32">
-          <div className="max-w-4xl mx-auto rounded-[2.5rem] bg-foreground text-background p-10 md:p-16 relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-8 opacity-10">
-              <Send className="w-32 h-32 -rotate-12" />
-            </div>
-            <div className="relative z-10 text-center">
-              <h2 className="text-3xl md:text-5xl font-black mb-6">Stay in the loop</h2>
-              <p className="text-background/60 mb-10 max-w-xl mx-auto leading-relaxed">
-                Join our community on Discord and follow us on Twitter for the latest
-                updates, features, and community spotlights.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button variant="link" className="bg-transparent border-background/20 text-background rounded-full px-8 h-12">
-                  <Link href="https://github.com/Relwave/relwave-app" target="_blank" className="flex items-center gap-2">
-                    <Github className="w-4 h-4" />
-                    Star us on GitHub
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   )

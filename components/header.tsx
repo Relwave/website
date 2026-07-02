@@ -24,7 +24,7 @@ export function Header() {
                 alt="RelWave"
                 width={16}
                 height={16}
-                className="w-5 h-5 object-contain invert dark:invert-0"
+                className="w-5 h-5 object-contain"
               />
             </div>
             <span className="text-lg font-bold tracking-tight">Relwave</span>

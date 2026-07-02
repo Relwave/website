@@ -8,13 +8,14 @@ import { useEffect, useState } from 'react'
 export function HeroSection() {
 
   const [version, setVersion] = useState('')
+  const [versionNo, setVersionNo] = useState('')
 
   useEffect(() => {
     async function fetchVersion() {
       const res = await fetch('/api/version')
       const data = await res.json()
-      console.log('Latest version:', data.version)
       setVersion(data.version)
+      setVersionNo(data.version.slice(1))
     }
     fetchVersion()
   }, [])
@@ -40,50 +41,41 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 max-w-6xl leading-[1.1]"
+          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 max-w-6xl leading-[1.05]"
         >
-          Database management, finally done right.
+          Database management,
+          <br />
+          finally done right.
         </motion.h1>
 
-
-        {/* <motion.h1
+        <motion.i
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 max-w-4xl leading-[1.1]"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-xl font-iti md:text-4xl lg:text-5xl font-semibold text-foreground/90 mb-6 max-w-4xl leading-relaxed"
         >
-          Database.<br />
-          Visualized.<br />
-          <span className="text-primary italic">Versioned.</span>
-        </motion.h1> */}
+          Visualize. Query. Version.
+        </motion.i>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed"
         >
-          A modern, native database client with visual schema editing,
-          Git integration, and AI-powered analysis. Fast because it's
-          built with Tauri — not Java, not Electron.
+          RelWave is a native database client for PostgreSQL, MySQL, MariaDB, and SQLite,
+          combining visual ER diagrams, Git-powered workflows, migration management, and AI
+          assistance in one fast desktop application.
         </motion.p>
-        {/* <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
-        >
-          A modern database management platform for developers.
-        </motion.p> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-16 m-10"
         >
           <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full group">
-            <Link href="https://github.com/Relwave/relwave-app/releases/download/v0.9.0-rc-5/RelWave_0.9.0-rc-5_x64-setup.exe" className="flex items-center gap-2">
+            <Link href={`https://github.com/Relwave/relwave-app/releases/download/${version}/RelWave_${versionNo}_x64-setup.exe`} className="flex items-center gap-2">
               Get Started for Free
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>

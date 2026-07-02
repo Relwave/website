@@ -17,8 +17,8 @@ export function Footer() {
             <span className="text-xl font-bold tracking-tight">Relwave</span>
           </Link>
           <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-            Open-source database management tool with native Git version control.
-            Built for developers who care about schema integrity.
+            A modern, local-first database client with visual schema management,
+            Git-powered workflows, and native performance.
           </p>
           <div className="flex gap-4">
             <Link href="http://github.com/Relwave" target='_blank' className="text-muted-foreground hover:text-primary transition-colors">
