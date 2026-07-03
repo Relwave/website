@@ -74,13 +74,13 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-16 m-10"
         >
-          <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full group">
+          <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full group" data-umami-event='hero-download-button'>
             <Link href={`https://github.com/Relwave/relwave-app/releases/download/${version}/RelWave_${versionNo}_x64-setup.exe`} className="flex items-center gap-2">
               Get Started for Free
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
-          <Button size="lg" variant="outline" className="h-12 px-8 text-base font-semibold rounded-full">
+          <Button size="lg" variant="outline" className="h-12 px-8 text-base font-semibold rounded-full" data-umami-event='hero-github-button'>
             <Link href="https://github.com/Relwave/relwave-app" className="flex items-center gap-2">
               <Github className="w-4 h-4" />
               View on GitHub

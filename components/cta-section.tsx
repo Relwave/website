@@ -19,7 +19,7 @@ export function CTASection() {
             whileInView={{ opacity: 1, scale: 1 }}
             className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mb-8 shadow-lg shadow-primary/20"
           >
-            <Sparkles className="w-8 h-8 text-foreground" />
+            <Sparkles className="w-8 h-8" />
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
@@ -31,13 +31,13 @@ export function CTASection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" variant="default" className="bg-secondary text-foreground hover:bg-gray-700 h-14 px-10 text-lg font-bold rounded-full group">
+            <Button size="lg" variant="default" data-umami-event='download_cta' className="bg-secondary text-foreground hover:bg-gray-700 h-14 px-10 text-lg font-bold rounded-full group">
               <Link href="https://github.com/Relwave/relwave-app/releases" className="flex items-center gap-2">
                 Download Desktop App
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button size="lg" variant="link" className="border-background/20  h-14 px-10 text-lg font-bold rounded-full text-background">
+            <Button size="lg" variant="link" data-umami-event='github_cta' className="border-background/20  h-14 px-10 text-lg font-bold rounded-full text-background">
               <Link href="https://github.com/Relwave/relwave-app" className="flex items-center gap-2">
                 <Github className="w-5 h-5" />
                 Open Source

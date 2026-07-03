@@ -21,13 +21,13 @@ export function Footer() {
             Git-powered workflows, and native performance.
           </p>
           <div className="flex gap-4">
-            <Link href="http://github.com/Relwave" target='_blank' className="text-muted-foreground hover:text-primary transition-colors">
+            <Link data-umami-event='github_footer' href="http://github.com/Relwave" target='_blank' className="text-muted-foreground hover:text-primary transition-colors">
               <Github className="w-5 h-5" />
             </Link>
-            <Link href="https://x.com/Yashh596" target='_blank' className="text-muted-foreground hover:text-primary transition-colors">
+            <Link data-umami-event='twitter_footer' href="https://x.com/Yashh596" target='_blank' className="text-muted-foreground hover:text-primary transition-colors">
               <Twitter className="w-5 h-5" />
             </Link>
-            <Link href="https://www.linkedin.com/in/yash596/" target='_blank' className="text-muted-foreground hover:text-primary transition-colors">
+            <Link data-umami-event='linkedin_footer' href="https://www.linkedin.com/in/yash596/" target='_blank' className="text-muted-foreground hover:text-primary transition-colors">
               <Linkedin className="w-5 h-5" />
             </Link>
           </div>
@@ -43,17 +43,17 @@ export function Footer() {
         <div>
           <h4 className="font-bold mb-6 text-sm uppercase tracking-wider">Resources</h4>
           <ul className="space-y-4 text-sm">
-            <li><Link href="http://github.com/Relwave" target='_blank' className="text-muted-foreground hover:text-foreground transition-colors">GitHub Repository</Link></li>
-            <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Sponsorship</Link></li>
+            <li><Link data-umami-event='github_footer_resources' href="http://github.com/Relwave" target='_blank' className="text-muted-foreground hover:text-foreground transition-colors">GitHub Repository</Link></li>
+            <li><Link data-umami-event='sponsorship_footer' href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Sponsorship</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-bold mb-6 text-sm uppercase tracking-wider">Legal</h4>
           <ul className="space-y-4 text-sm">
-            <li><Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link></li>
-            <li><Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link></li>
-            <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact Us</Link></li>
+            <li><Link data-umami-event='privacy_footer' href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link></li>
+            <li><Link data-umami-event='terms_footer' href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link></li>
+            <li><Link data-umami-event='contact_footer' href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact Us</Link></li>
           </ul>
         </div>
       </div>

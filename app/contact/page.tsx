@@ -88,7 +88,7 @@ export default function ContactPage() {
                 <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
                   {method.description}
                 </p>
-                <Button variant="outline" className="w-full rounded-xl transition-all" asChild>
+                <Button data-umami-event={method.title.toLocaleLowerCase().replaceAll(' ', '_')} variant="outline" className="w-full rounded-xl transition-all" asChild>
                   <Link href={method.href}>{method.action}</Link>
                 </Button>
               </motion.div>

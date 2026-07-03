@@ -14,7 +14,7 @@ export function FAQSection() {
     <section className="py-24 px-6 bg-background relative overflow-hidden">
       {/* Subtle background decoration */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10" />
-      
+
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <motion.div
@@ -42,12 +42,14 @@ export function FAQSection() {
         >
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
+              <AccordionItem
+                key={index}
                 value={`item-${index}`}
                 className="border-border/60 data-[state=open]:border-primary/20 transition-colors"
+                data-umami-event='faq-item'
               >
-                <AccordionTrigger className="text-left font-semibold text-base md:text-lg hover:text-primary transition-colors py-6">
+                <AccordionTrigger className="text-left font-semibold text-base md:text-lg hover:text-primary transition-colors py-6" data-umami-event={faq.question}
+                >
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed text-sm md:text-base pb-6">

@@ -35,6 +35,7 @@ export function Header() {
           <Link
             href="/contact"
             className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            data-umami-event='contact_header'
           >
             Contact
           </Link>
@@ -44,6 +45,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            data-umami-event='github_header'
           >
             <Github className="w-4 h-4" />
           </Link>
@@ -57,6 +59,7 @@ export function Header() {
             onClick={toggleTheme}
             className="rounded-full w-9 h-9"
             aria-label="Toggle theme"
+            data-umami-event='theme_toggle'
           >
             {mounted ? (
               isDark ? (
