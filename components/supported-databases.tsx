@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export function SupportedDatabases() {
@@ -25,7 +26,7 @@ export function SupportedDatabases() {
               transition={{ delay: i * 0.1 }}
               className="flex items-center gap-3 group cursor-default"
             >
-              <img src={db.icon} alt={db.name} className="w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:scale-110" />
+              <Image src={db.icon} alt={`${db.name} database client connection support`} width={40} height={40} className="w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:scale-110" />
               <span className="text-sm md:text-base font-bold tracking-wider">{db.name}</span>
             </motion.div>
           ))}

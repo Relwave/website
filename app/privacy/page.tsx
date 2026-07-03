@@ -2,6 +2,15 @@ import { Header } from "@/components/header";
 import ReactMarkdown from "react-markdown";
 import fs from "fs";
 import path from "path";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read the RelWave Privacy Policy. We believe in local-first, privacy-respecting tools.",
+  alternates: {
+    canonical: 'https://relwave.tech/privacy',
+  },
+}
 
 export default function PrivacyPage() {
   const privacyPath = path.join(process.cwd(), "content", "privacy", "policies.md");

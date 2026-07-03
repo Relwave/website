@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import {
@@ -171,7 +172,7 @@ export function Product() {
                         </div>
 
                         <div className="relative w-full rounded-xl overflow-hidden border border-border/40 shadow-2xl bg-card p-1 sm:p-2 z-10">
-                            <img src="/OS.png" alt="Relwave App Interface" className="w-full h-auto rounded-lg opacity-90 object-cover object-top max-h-[250px]" />
+                            <Image src="/icon.png" alt="RelWave database client visual ER diagram and SQL editor interface" width={800} height={250} className="w-full h-auto rounded-lg opacity-90 object-cover object-top max-h-[250px]" />
                             <div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent flex items-end justify-center pb-6">
                                 <Badge variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground border-none shadow-xl px-4 py-1.5 text-sm">
                                     Open on Desktop

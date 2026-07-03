@@ -2,6 +2,15 @@ import { Header } from "@/components/header";
 import ReactMarkdown from "react-markdown";
 import fs from "fs";
 import path from "path";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Terms of Service and End User License Agreement for the RelWave database client.",
+  alternates: {
+    canonical: 'https://relwave.tech/terms',
+  },
+}
 
 export default function TermsPage() {
   const termsPath = path.join(process.cwd(), "content", "legal", "terms.md");
