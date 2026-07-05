@@ -72,7 +72,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16 m-10"
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-10 mb-8"
         >
           <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full group" data-umami-event='hero-download-button'>
             <Link href={`https://github.com/Relwave/relwave-app/releases/download/${version}/RelWave_${versionNo}_x64-setup.exe`} className="flex items-center gap-2">
@@ -86,6 +86,20 @@ export function HeroSection() {
               View on GitHub
             </Link>
           </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+        >
+          <a href="https://backlinklog.com/listing/relwave.tech?utm_source=backlinklog&utm_medium=badge">
+            <img src="https://backlinklog.com/badge/relwave.tech.svg" alt="Listed on BacklinkLog" className="h-[54px] w-auto hover:opacity-90 transition-opacity" />
+          </a>
+          <a href="https://www.producthunt.com/products/relwave?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-relwave" target="_blank" rel="noopener noreferrer">
+            <img alt="RelWave - A local-first database client with Git-powered workflows | Product Hunt" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1187949&amp;theme=light&amp;t=1783184136158" className="h-[54px] w-auto hover:opacity-90 transition-opacity" />
+          </a>
         </motion.div>
       </div>
     </section>
