@@ -42,6 +42,17 @@ When visiting the RelWave website, anonymous analytics may be collected, includi
 
 This information is used solely to improve the website and understand product usage trends.
 
+### Application Telemetry
+
+To help us improve the product, RelWave collects anonymous usage data (telemetry) via Aptabase. This includes:
+
+- App launch and exit events
+- Basic feature usage (e.g., executing a query, generating an ER diagram)
+- App crashes and errors
+
+**Privacy First:** This telemetry does NOT collect personally identifiable information (PII), database credentials, query strings, table rows, or schema definitions. 
+**Opt-Out:** You have full control. You can disable all application telemetry at any time by turning off the "Analytics" toggle in the RelWave Settings panel.
+
 ---
 
 ## 2. Database Data

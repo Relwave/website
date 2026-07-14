@@ -32,14 +32,18 @@ RelWave provides tools for:
 
 Always review changes before applying them.
 
-## 5. Disclaimer
+## 5. Privacy & Analytics
+
+By using RelWave, you agree to the collection of anonymous application telemetry (such as feature usage and crash reports) designed to help improve the software. This data never includes personal information, database credentials, or queries. You may opt out of this data collection at any time via the application settings. For more details, please review our Privacy Policy.
+
+## 6. Disclaimer
 
 RELWAVE IS PROVIDED "AS IS".
 
-## 6. Limitation of Liability
+## 7. Limitation of Liability
 
 RelWave and its contributors are not liable for data loss, corruption, or business interruption.
 
-## 7. Contact
+## 8. Contact
 
 opensourceyash@gmail.com
