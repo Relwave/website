@@ -83,7 +83,7 @@ export function HeroSection() {
           <Button size="lg" variant="outline" className="h-12 px-8 text-base font-semibold rounded-full" data-umami-event='hero-github-button'>
             <Link href="https://github.com/Relwave/relwave-app" className="flex items-center gap-2">
               <Github className="w-4 h-4" />
-              View on GitHub
+              Star us on GitHub
             </Link>
           </Button>
         </motion.div>
@@ -92,7 +92,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
         >
           <a href="https://backlinklog.com/listing/relwave.tech?utm_source=backlinklog&utm_medium=badge">
             <img src="https://backlinklog.com/badge/relwave.tech.svg" alt="Listed on BacklinkLog" className="h-[54px] w-auto hover:opacity-90 transition-opacity" />
