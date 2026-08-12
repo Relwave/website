@@ -151,8 +151,8 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script defer src="https://cloud.umami.is/script.js" data-website-id="6e859e8c-177a-4cd4-be7a-6c20ef39579d"></script>
-        <script defer src="https://umami-real.vercel.app/script.js" data-website-id="9de2a8bb-7f60-4030-a46d-131b2fd525ad"></script>
-        <script defer src="https://umami-real.vercel.app/recorder.js" data-website-id="9de2a8bb-7f60-4030-a46d-131b2fd525ad"></script>
+        <script defer src="https://umami.yashh56.me/script.js" data-website-id="9de2a8bb-7f60-4030-a46d-131b2fd525ad"></script>
+        <script defer src="https://umami.yashh56.me/recorder.js" data-website-id="9de2a8bb-7f60-4030-a46d-131b2fd525ad"></script>
       </head>
       <body className={`${manrope.variable} ${sora.variable} font-sans antialiased`}>
         <ThemeProvider>
