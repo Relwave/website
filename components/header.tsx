@@ -8,7 +8,13 @@ import { useTheme } from './theme-provider'
 import { Github, Menu, Moon, Sun, X } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-const navItems = [
+type NavItem = {
+  label: string
+  href: string
+  external?: boolean
+}
+
+const navItems: NavItem[] = [
   { label: 'Product', href: '/#product' },
   { label: 'Workflow', href: '/#workflow' },
   { label: 'Architecture', href: '/#architecture' },
