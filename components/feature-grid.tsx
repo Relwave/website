@@ -1,5 +1,6 @@
 'use client'
 
+import { databases } from '@/lib/databases'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, Bot, Check, Database, GitCommitHorizontal, Network, PlaySquare, Workflow } from 'lucide-react'
 
@@ -39,7 +40,6 @@ const features = [
 ]
 
 function IntegrationStrip() {
-  const databases = ['PostgreSQL', 'MySQL', 'MariaDB', 'SQLite']
 
   return (
     <div className="mt-20 grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -54,11 +54,11 @@ function IntegrationStrip() {
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {databases.map((database) => (
-          <div key={database} className="rounded-xl border border-border bg-card p-5 text-center shadow-sm">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-primary">
-              <Database className="h-5 w-5" />
+          <div key={database.name} className="rounded-xl border border-border bg-card p-5 text-center shadow-sm">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg ">
+              {database.icon}
             </div>
-            <div className="text-sm font-semibold">{database}</div>
+            <div className="text-sm font-semibold">{database.name}</div>
           </div>
         ))}
       </div>
