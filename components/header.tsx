@@ -9,10 +9,10 @@ import { Github, Menu, Moon, Sun, X } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const navItems = [
-  { label: 'Product', href: '#product' },
-  { label: 'Workflow', href: '#workflow' },
-  { label: 'Architecture', href: '#architecture' },
-  { label: 'Docs', href: 'https://github.com/Relwave/relwave-app#readme', external: true },
+  { label: 'Product', href: '/#product' },
+  { label: 'Workflow', href: '/#workflow' },
+  { label: 'Architecture', href: '/#architecture' },
+  {label:"Contact", href:"/contact"},
 ]
 
 export function Header() {
@@ -69,7 +69,7 @@ export function Header() {
             {mounted && isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </Button>
           <Button asChild className="hidden h-9 rounded-md px-4 font-semibold sm:inline-flex" data-umami-event="download_header">
-            <Link href="#download">Download</Link>
+            <Link href="/#download">Download</Link>
           </Button>
           <Button
             size="icon"
@@ -110,7 +110,7 @@ export function Header() {
               GitHub
             </Link>
             <Button asChild className="mt-2 h-11 w-full">
-              <Link href="#download" onClick={() => setMenuOpen(false)}>
+              <Link href="/#download" onClick={() => setMenuOpen(false)}>
                 Download RelWave
               </Link>
             </Button>
