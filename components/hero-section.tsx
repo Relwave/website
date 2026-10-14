@@ -162,7 +162,7 @@ export function HeroSection() {
     : 'https://github.com/Relwave/relwave-app/releases/latest'
 
   return (
-    <section className="relative overflow-hidden pt-28 sm:pt-32">
+    <section className="surface-cream relative overflow-hidden pt-28 sm:pt-32">
       <div className="absolute inset-0 -z-10 technical-grid opacity-45" />
       <div className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-linear-to-b from-primary/12 via-accent/20 to-transparent" />
 

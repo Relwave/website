@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Manrope, Sora } from "next/font/google";
+import { DM_Sans, Space_Mono } from "next/font/google";
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/footer'
 import "./globals.css";
 
-const manrope = Manrope({
+const dmSans = DM_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const sora = Sora({
+const spaceMono = Space_Mono({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "700"],
 });
 
 
@@ -124,7 +125,7 @@ export const metadata: Metadata = {
   },
 
   other: {
-    'theme-color': '#0a0a0a',
+    'theme-color': '#f5efeb',
   },
 }
 
@@ -154,7 +155,7 @@ export default function RootLayout({
         <script defer src="https://umami.yashh56.me/script.js" data-website-id="9de2a8bb-7f60-4030-a46d-131b2fd525ad"></script>
         <script defer src="https://umami.yashh56.me/recorder.js" data-website-id="9de2a8bb-7f60-4030-a46d-131b2fd525ad"></script>
       </head>
-      <body className={`${manrope.variable} ${sora.variable} font-sans antialiased`}>
+      <body className={`${dmSans.variable} ${spaceMono.variable} font-sans antialiased`}>
         <ThemeProvider>
           {children}
           <Footer />

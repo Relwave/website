@@ -231,7 +231,7 @@ export function Product() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="product" className="bg-background py-24 sm:py-28">
+    <section id="product" className="surface-blue py-24 sm:py-28">
       <div className="section-shell">
         <div className="mb-12 grid gap-8 lg:grid-cols-[0.78fr_1fr] lg:items-end">
           <div>

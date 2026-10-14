@@ -11,7 +11,7 @@ export function DownloadSection() {
   const os = useOS()
 
   return (
-    <section id="download" className="relative overflow-hidden bg-background py-24 sm:py-28">
+    <section id="download" className="surface-cream relative overflow-hidden py-24 sm:py-28">
       <div className="section-shell">
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Open source desktop app</p>

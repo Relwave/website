@@ -11,7 +11,7 @@ import { HelpCircle } from 'lucide-react'
 
 export function FAQSection() {
   return (
-    <section className="py-24 px-6 bg-background relative overflow-hidden">
+    <section className="surface-blue py-24 px-6 relative overflow-hidden">
       {/* Subtle background decoration */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10" />
 

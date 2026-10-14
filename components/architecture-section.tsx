@@ -48,7 +48,7 @@ export function ArchitectureSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="architecture" className="border-y border-border bg-muted/25 py-24 sm:py-28">
+    <section id="architecture" className="surface-cream border-y border-border py-24 sm:py-28">
       <div className="section-shell">
         <div className="mb-14 grid gap-8 lg:grid-cols-[0.85fr_1fr] lg:items-end">
           <div>

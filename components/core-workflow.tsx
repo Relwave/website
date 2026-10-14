@@ -30,7 +30,7 @@ export function CoreWorkflow() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="workflow" className="relative overflow-hidden border-y border-border bg-muted/25 py-24 sm:py-28">
+    <section id="workflow" className="surface-cream relative overflow-hidden border-y border-border py-24 sm:py-28">
       <div className="section-shell">
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Database workflow visualization</p>

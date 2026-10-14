@@ -16,7 +16,7 @@ export function CTASection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="bg-background pb-24 sm:pb-28">
+    <section className="surface-yellow pb-24 pt-24 sm:pb-28 sm:pt-28">
       <div className="section-shell">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
