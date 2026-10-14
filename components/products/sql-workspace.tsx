@@ -1,5 +1,5 @@
 'use client'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
     Table2,
     Play,
@@ -99,7 +99,7 @@ export const SQLWorkSpace = ({
                             <span className="text-[#569cd6]">SELECT</span> users.email, <span className="text-[#dcdcaa]">COUNT</span>(orders.id) <span className="text-[#569cd6]">AS</span> order_count <br />
                             <span className="text-[#569cd6]">FROM</span> users <br />
                             <span className="text-[#c586c0]">LEFT JOIN</span> orders <span className="text-[#569cd6]">ON</span> users.id = orders.user_id <br />
-                            <span className="text-[#569cd6]">WHERE</span> users.status = <span className="text-[#ce9178]">'active'</span> <br />
+                            <span className="text-[#569cd6]">WHERE</span> users.status = <span className="text-[#ce9178]">&apos;active&apos;</span> <br />
                             <span className="text-[#569cd6]">GROUP BY</span> users.id <br />
                             <span className="text-[#569cd6]">ORDER BY</span> order_count <span className="text-[#569cd6]">DESC</span>;
                         </div>

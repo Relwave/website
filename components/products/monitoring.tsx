@@ -69,7 +69,7 @@ export const Monitoring = () => {
                                 <div key={i} className="grid grid-cols-[80px_100px_1fr] text-xs p-2 px-4 border-b border-border/20 items-center">
                                     <div className="font-mono text-muted-foreground">0.{i}s</div>
                                     <div><Badge variant="outline" className="text-[9px]">active</Badge></div>
-                                    <div className="truncate font-mono">SELECT * FROM users WHERE status = 'active'</div>
+                                    <div className="truncate font-mono">SELECT * FROM users WHERE status = &apos;active&apos;</div>
                                 </div>
                             ))}
                         </div>

@@ -19,8 +19,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const isDarkMode = stored === 'dark' ||
       (!stored && document.documentElement.classList.contains('dark'))
 
-    setIsDark(isDarkMode)
-    setMounted(true)
+    window.setTimeout(() => {
+      setIsDark(isDarkMode)
+      setMounted(true)
+    }, 0)
   }, [])
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import {
     MessageSquare,
     LayoutGrid,
 } from 'lucide-react'
-import { Card, CardHeader, CardContent } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
 export const ERDigram = () => {

@@ -1,144 +1,128 @@
 'use client'
-import { motion } from 'framer-motion'
-import { Monitor, Cpu, Database as DbIcon, Zap, Lock, HardDrive } from 'lucide-react'
+
+import { motion, useReducedMotion } from 'framer-motion'
+import { Cpu, Database, FileCode2, GitBranch, HardDrive, LockKeyhole, Monitor, ServerCog, Terminal } from 'lucide-react'
+
+const layers = [
+  {
+    title: 'React interface',
+    detail: 'The workspace UI, editor surfaces, diagrams, and product flows live in the desktop frontend.',
+    icon: Monitor,
+  },
+  {
+    title: 'Tauri desktop shell',
+    detail: 'A native boundary hosts the desktop app and coordinates process communication.',
+    icon: Cpu,
+  },
+  {
+    title: 'Node.js bridge',
+    detail: 'A local bridge performs database, Git, filesystem, monitoring, SSH, and AI-provider work.',
+    icon: ServerCog,
+  },
+  {
+    title: 'Databases and project files',
+    detail: 'Requests resolve against local or remote databases and local project artifacts such as migrations.',
+    icon: Database,
+  },
+]
+
+const capabilities = [
+  {
+    title: 'Local-first by design',
+    description: 'RelWave is distributed as a desktop application. Database work happens from the local app rather than a hosted web console.',
+    icon: HardDrive,
+  },
+  {
+    title: 'Credential handling stays local',
+    description: 'The public project describes OS keyring-based credential storage. The site avoids making broader security guarantees than the codebase supports.',
+    icon: LockKeyhole,
+  },
+  {
+    title: 'Git and migration aware',
+    description: 'The bridge layer is responsible for Git and filesystem operations, making schema changes reviewable beside application code.',
+    icon: GitBranch,
+  },
+]
 
 export function ArchitectureSection() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
-    <section className="py-24 px-6 bg-accent/5 border-y border-border/40">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Native Performance. Local First.</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Relwave is built on a unique architecture that combines the speed of native drivers with the flexibility of web technologies.
+    <section id="architecture" className="border-y border-border bg-muted/25 py-24 sm:py-28">
+      <div className="section-shell">
+        <div className="mb-14 grid gap-8 lg:grid-cols-[0.85fr_1fr] lg:items-end">
+          <div>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Local-first architecture</p>
+            <h2 className="font-display text-4xl font-semibold leading-tight sm:text-5xl">
+              A desktop app with a native bridge for real database work.
+            </h2>
+          </div>
+          <p className="text-lg leading-8 text-muted-foreground">
+            RelWave’s app architecture is described as a React UI inside Tauri, with a dedicated Node.js bridge handling database, Git, filesystem, monitoring, SSH tunnel, and AI-service work through local process communication.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-          
-          {/* Architecture Diagram */}
-          <div className="flex-1 w-full max-w-lg mx-auto relative">
-             <div className="absolute inset-0 bg-primary/5 blur-3xl rounded-full" />
-             
-             <div className="relative flex flex-col items-center gap-6">
-                
-                {/* Frontend */}
-                <motion.div 
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 surface-shadow sm:p-8">
+            <div className="absolute inset-0 technical-grid opacity-35" />
+            <div className="relative space-y-4">
+              {layers.map((layer, index) => (
+                <motion.div
+                  key={layer.title}
+                  initial={shouldReduceMotion ? false : { opacity: 0, x: -18 }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="w-full bg-background border border-border/60 rounded-2xl p-6 shadow-xl flex items-center gap-4 z-10"
+                  transition={{ delay: index * 0.1 }}
+                  className="relative rounded-xl border border-border bg-background/90 p-5"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0 border border-blue-500/20">
-                    <Monitor className="w-6 h-6 text-blue-500" />
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <layer.icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-semibold">{layer.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{layer.detail}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold">React Frontend</h3>
-                    <p className="text-xs text-muted-foreground">High-performance UI & ReactFlow Canvas</p>
-                  </div>
+                  {index < layers.length - 1 && (
+                    <motion.div
+                      className="absolute -bottom-4 left-11 z-10 h-4 w-px bg-primary/50"
+                      initial={shouldReduceMotion ? false : { scaleY: 0 }}
+                      whileInView={shouldReduceMotion ? undefined : { scaleY: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.12 + 0.2 }}
+                    />
+                  )}
                 </motion.div>
-
-                {/* Arrow */}
-                <div className="w-px h-10 bg-gradient-to-b from-border to-primary border-l border-dashed border-primary/50 relative">
-                  <motion.div 
-                    initial={{ top: 0 }}
-                    animate={{ top: "100%" }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary"
-                  />
-                </div>
-
-                {/* Node Bridge */}
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="w-[90%] bg-background border border-primary/40 rounded-2xl p-6 shadow-2xl shadow-primary/10 flex items-center gap-4 z-10 relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-primary/5" />
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30 relative z-10">
-                    <Cpu className="w-6 h-6 text-primary" />
-                  </div>
-                  <div className="relative z-10">
-                    <h3 className="font-bold text-primary">Node.js Sidecar</h3>
-                    <p className="text-xs text-muted-foreground">Direct OS access & credential management</p>
-                  </div>
-                </motion.div>
-
-                {/* Arrow */}
-                <div className="w-px h-10 bg-gradient-to-b from-primary to-border border-l border-dashed border-border/50 relative">
-                  <motion.div 
-                    initial={{ top: 0 }}
-                    animate={{ top: "100%" }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.5 }}
-                    className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-emerald-500"
-                  />
-                </div>
-
-                {/* Database Layer */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="w-full grid grid-cols-2 gap-4 z-10"
-                >
-                   <div className="bg-background border border-border/60 rounded-2xl p-4 shadow-sm flex items-center gap-3">
-                     <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                       <DbIcon className="w-4 h-4 text-emerald-500" />
-                     </div>
-                     <span className="text-sm font-semibold">Local DB</span>
-                   </div>
-                   <div className="bg-background border border-border/60 rounded-2xl p-4 shadow-sm flex items-center gap-3">
-                     <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                       <DbIcon className="w-4 h-4 text-emerald-500" />
-                     </div>
-                     <span className="text-sm font-semibold">Remote via SSH</span>
-                   </div>
-                </motion.div>
-                
-             </div>
-          </div>
-
-          {/* Text Content */}
-          <div className="flex-1 space-y-8">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-                <Zap className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h4 className="text-xl font-bold mb-2">Native Driver Performance</h4>
-                <p className="text-muted-foreground leading-relaxed">
-                  Unlike pure web-based tools, Relwave uses real native database drivers through its Node.js sidecar, ensuring maximum query execution speed and full feature support.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-                <Lock className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h4 className="text-xl font-bold mb-2">Secure Credential Storage</h4>
-                <p className="text-muted-foreground leading-relaxed">
-                  Your database credentials never leave your machine. They are encrypted and stored safely in your operating system's native secure keychain.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-                <HardDrive className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h4 className="text-xl font-bold mb-2">Direct Local Connections</h4>
-                <p className="text-muted-foreground leading-relaxed">
-                  Connect to localhost databases and Docker containers instantly without needing complex tunneling services like Ngrok or Cloudflare Tunnels.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 
+          <div className="space-y-4">
+            {capabilities.map((capability) => (
+              <div key={capability.title} className="rounded-xl border border-border bg-card p-5">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <capability.icon className="h-4 w-4" />
+                  </div>
+                  <h3 className="font-display text-xl font-semibold">{capability.title}</h3>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground">{capability.description}</p>
+              </div>
+            ))}
+
+            <div className="rounded-xl border border-border bg-[#101719] p-5 text-slate-100">
+              <div className="mb-4 flex items-center gap-2 text-sm font-semibold"><Terminal className="h-4 w-4 text-cyan-200" /> Request path</div>
+              <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] text-slate-300">
+                {['React UI', 'Tauri command', 'Node RPC', 'Service', 'Database'].map((item, index) => (
+                  <span key={item} className="flex items-center gap-2">
+                    <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-1">{item}</span>
+                    {index < 4 && <FileCode2 className="h-3 w-3 text-slate-500" />}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

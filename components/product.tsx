@@ -1,189 +1,290 @@
 'use client'
-import Image from 'next/image'
+
 import { useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import type { ReactNode } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
-    Database,
-    Terminal,
-    Activity,
-    Layers,
-    GitCommitHorizontal,
+  Bot,
+  Database,
+  FileDiff,
+  GitBranch,
+  MessageSquareText,
+  Play,
+  Sparkles,
+  Table2,
+  TerminalSquare,
 } from 'lucide-react'
-import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { SQLWorkSpace } from './products/sql-workspace'
-import { ERDigram } from './products/er-diagram'
-import { Monitoring } from './products/monitoring'
-import { GitStatus } from './products/git-status'
-import { Data } from './products/data'
 
-export function Product() {
-    const [activePanel, setActivePanel] = useState('data')
-    const [activeTable, setActiveTable] = useState('users')
-    const [sidebarTab, setSidebarTab] = useState<'tables' | 'history'>('tables')
+const tabs = [
+  {
+    id: 'sql',
+    label: 'SQL Editor',
+    icon: TerminalSquare,
+    eyebrow: 'Run and review',
+    title: 'A SQL workspace that keeps context close.',
+    description:
+      'Write queries with schema context nearby, inspect results, and move between saved work without leaving the database workspace.',
+  },
+  {
+    id: 'diagram',
+    label: 'ER Diagram',
+    icon: Database,
+    eyebrow: 'Explore relationships',
+    title: 'Turn database structure into something you can reason about.',
+    description:
+      'RelWave visualizes tables, keys, and relationships so larger schemas become navigable instead of mysterious.',
+  },
+  {
+    id: 'git',
+    label: 'Git Changes',
+    icon: GitBranch,
+    eyebrow: 'Version schema work',
+    title: 'Review database changes the way you review code.',
+    description:
+      'Track migrations and schema diffs in a Git-native flow before changes become part of your application history.',
+  },
+  {
+    id: 'ai',
+    label: 'AI Assistant',
+    icon: Sparkles,
+    eyebrow: 'Natural language to SQL',
+    title: 'Ask for a query, then keep full control.',
+    description:
+      'Use schema-aware assistance to draft SQL and explanations. The preview is illustrative and does not execute real database operations.',
+  },
+] as const
 
-    const tables = [
-        { name: 'users', schema: 'public', rows: 1240 },
-        { name: 'orders', schema: 'public', rows: 890 },
-        { name: 'products', schema: 'public', rows: 450 },
-        { name: 'subscriptions', schema: 'public', rows: 12 },
-    ]
+type TabId = (typeof tabs)[number]['id']
 
-    return (
-        <section className="py-24 px-6 bg-accent/30 border-y border-border/40">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                    <Badge variant="outline" className="mb-4">Live Product Experience</Badge>
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Built for Your Workflow</h2>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        From visual query building to advanced SQL execution.
-                        Relwave provides the tools you need for modern database management.
-                    </p>
-                </div>
-
-                <Card className="overflow-hidden border-border/60 shadow-2xl bg-card/50 backdrop-blur-sm rounded-xl">
-                    {/* Desktop Interactive View */}
-                    <div className="hidden lg:flex w-full h-[600px] flex-col app-surface text-foreground overflow-hidden bg-background">
-                        <div className="flex-1 flex overflow-hidden pl-15 min-w-0 relative">
-
-                            {/* Vertical Icon Bar (Exact matching structure) */}
-                            <nav className="fixed left-0 top-10 h-[600px] w-15 bg-sidebar/90 border-r border-sidebar-border z-40 flex flex-col items-center py-4 gap-2 backdrop-blur-xl shadow-[1px_0_0_rgba(255,255,255,0.03)_inset]">
-                                <div className="w-8 h-px bg-sidebar-border my-2" />
-                                <div className="flex flex-col gap-2">
-                                    {[
-                                        { panel: 'data', icon: Layers, label: 'Data View' },
-                                        { panel: 'sql-workspace', icon: Terminal, label: 'SQL Workspace' },
-                                        { panel: 'er-diagram', icon: Database, label: 'ER Diagram' },
-                                        { panel: 'monitoring', icon: Activity, label: 'Monitoring' },
-                                        { panel: 'git-status', icon: GitCommitHorizontal, label: 'Git Status' },
-                                    ].map(item => (
-                                        <Button
-                                            key={item.panel}
-                                            variant="ghost"
-                                            size="icon"
-                                            onClick={() => setActivePanel(item.panel)}
-                                            className={`w-10 h-10 rounded-lg transition-all duration-150 ${activePanel === item.panel
-                                                ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
-                                                : 'text-sidebar-foreground/62 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-                                                }`}
-                                        >
-                                            <item.icon className="h-5 w-5" />
-                                        </Button>
-                                    ))}
-                                </div>
-                            </nav>
-
-                            {/* Main Content Area */}
-                            <main className="flex-1 min-w-0 flex flex-col overflow-hidden ml-1 relative">
-                                <AnimatePresence mode="wait">
-
-                                    {/* DATA VIEW PANEL */}
-                                    {activePanel === 'data' && (
-                                        <Data
-                                            tables={tables}
-                                            activeTable={activeTable}
-                                            setActiveTable={setActiveTable}
-                                        />
-                                    )}
-
-                                    {/* SQL WORKSPACE PANEL */}
-                                    {activePanel === 'sql-workspace' && (
-                                        <SQLWorkSpace
-                                            setSidebarTab={setSidebarTab}
-                                            sidebarTab={sidebarTab}
-                                            tables={tables}
-                                        />
-                                    )}
-
-                                    {/* ER DIAGRAM PANEL */}
-                                    {activePanel === 'er-diagram' && (
-                                        <ERDigram />
-                                    )}
-
-                                    {/* MONITORING PANEL */}
-                                    {activePanel === 'monitoring' && (
-                                        <Monitoring />
-                                    )}
-
-                                    {/* GIT STATUS PANEL */}
-                                    {activePanel === 'git-status' && (
-                                        <GitStatus />
-                                    )}
-
-                                </AnimatePresence>
-                            </main>
-                        </div>
-
-                        {/* Status bar */}
-                        <div className="shrink-0 h-7 ml-2 border-t border-border/30 bg-background/80 backdrop-blur-xl flex items-center px-2 pl-15 gap-4 min-w-0 z-50 relative">
-                            <div className="flex items-center gap-1.5 text-[10px] font-mono px-2 py-0.5 rounded-sm bg-muted/50 border border-border/50">
-                                <GitCommitHorizontal className="h-3 w-3" />
-                                <span>main</span>
-                            </div>
-                            <div className="flex-1" />
-                            <div className="flex items-center gap-4 text-[10px] text-muted-foreground font-mono">
-                                <span className="flex items-center gap-1.5"><Activity className="w-3 h-3 text-emerald-500" /> Connected</span>
-                                <span>production-db</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Mobile View */}
-                    <div className="flex lg:hidden flex-col items-center text-center p-6 sm:p-10 bg-background relative overflow-hidden">
-                        {/* Background decorative elements */}
-                        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-primary/5 blur-3xl" />
-                        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-blue-500/5 blur-3xl" />
-
-                        <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center mb-6 relative z-10 shadow-lg shadow-primary/5">
-                            <Terminal className="h-8 w-8 text-primary" />
-                        </div>
-
-                        <h3 className="text-2xl font-bold tracking-tight mb-3 relative z-10">Relwave Desktop</h3>
-                        <p className="text-muted-foreground mb-8 text-sm sm:text-base max-w-md mx-auto relative z-10">
-                            Experience the full power of Relwave's visual query builder, advanced SQL execution, and database monitoring on a desktop device.
-                        </p>
-
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full mb-8 relative z-10">
-                            <div className="flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-card/80 border border-border/50 shadow-sm backdrop-blur-sm transition-transform hover:scale-105">
-                                <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500">
-                                    <Layers className="h-6 w-6" />
-                                </div>
-                                <span className="text-sm font-semibold">Data View</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-card/80 border border-border/50 shadow-sm backdrop-blur-sm transition-transform hover:scale-105">
-                                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-500">
-                                    <Terminal className="h-6 w-6" />
-                                </div>
-                                <span className="text-sm font-semibold">SQL Editor</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-card/80 border border-border/50 shadow-sm backdrop-blur-sm transition-transform hover:scale-105">
-                                <div className="p-2 rounded-lg bg-purple-500/10 text-purple-500">
-                                    <Database className="h-6 w-6" />
-                                </div>
-                                <span className="text-sm font-semibold">ER Diagrams</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-card/80 border border-border/50 shadow-sm backdrop-blur-sm transition-transform hover:scale-105">
-                                <div className="p-2 rounded-lg bg-orange-500/10 text-orange-500">
-                                    <Activity className="h-6 w-6" />
-                                </div>
-                                <span className="text-sm font-semibold">Monitoring</span>
-                            </div>
-                        </div>
-
-                        <div className="relative w-full rounded-xl overflow-hidden border border-border/40 shadow-2xl bg-card p-1 sm:p-2 z-10">
-                            <Image src="/icon.png" alt="RelWave database client visual ER diagram and SQL editor interface" width={800} height={250} className="w-full h-auto rounded-lg opacity-90 object-cover object-top max-h-[250px]" />
-                            <div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent flex items-end justify-center pb-6">
-                                <Badge variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground border-none shadow-xl px-4 py-1.5 text-sm">
-                                    Open on Desktop
-                                </Badge>
-                            </div>
-                        </div>
-                    </div>
-                </Card>
+function SQLVisual() {
+  return (
+    <div className="grid h-full min-h-[500px] grid-cols-1 bg-[#0e1518] text-slate-100 lg:grid-cols-[240px_1fr]">
+      <aside className="hidden border-r border-white/10 bg-black/18 p-4 lg:block">
+        <div className="mb-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Tables</div>
+        {['users', 'orders', 'products', 'subscriptions'].map((table, index) => (
+          <div key={table} className={`mb-2 flex items-center justify-between rounded-md px-3 py-2 text-sm ${index === 0 ? 'bg-cyan-400/10 text-cyan-100' : 'text-slate-400'}`}>
+            <span className="flex items-center gap-2"><Table2 className="h-3.5 w-3.5" />{table}</span>
+            <span className="font-mono text-[10px]">{index + 3}</span>
+          </div>
+        ))}
+      </aside>
+      <main className="flex min-w-0 flex-col">
+        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+          <div className="flex gap-2 text-xs">
+            <span className="rounded-md bg-white/10 px-3 py-1 text-slate-100">Query 1</span>
+            <span className="rounded-md px-3 py-1 text-slate-500">Revenue Report</span>
+          </div>
+          <Button size="sm" className="h-8 bg-emerald-500 text-slate-950 hover:bg-emerald-400"><Play className="h-3.5 w-3.5" /> Execute</Button>
+        </div>
+        <div className="grid flex-1 grid-rows-[1fr_190px]">
+          <pre className="overflow-hidden p-5 font-mono text-[12px] leading-6 sm:text-sm">
+            <code>{`WITH paying_users AS (
+  SELECT users.id, users.email, orders.total
+  FROM users
+  JOIN orders ON orders.user_id = users.id
+  WHERE users.status = 'active'
+)
+SELECT email, COUNT(*) AS orders, SUM(total) AS revenue
+FROM paying_users
+GROUP BY email
+ORDER BY revenue DESC;`}</code>
+          </pre>
+          <div className="border-t border-white/10 bg-white/[0.03]">
+            <div className="grid grid-cols-4 border-b border-white/10 px-4 py-2 font-mono text-[11px] text-slate-500">
+              <span>email</span><span>orders</span><span>revenue</span><span>status</span>
             </div>
-        </section>
-    )
+            {['ava@acme.dev', 'niko@northwind.io', 'mira@orbit.test'].map((email, index) => (
+              <div key={email} className="grid grid-cols-4 border-b border-white/6 px-4 py-3 font-mono text-[11px]">
+                <span className="truncate text-cyan-100">{email}</span><span>{24 - index * 4}</span><span>${(12640 - index * 1400).toLocaleString()}</span><span className="text-emerald-300">active</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+    </div>
+  )
 }
 
+function DiagramVisual() {
+  const tables = [
+    { name: 'users', x: '8%', y: '15%', color: 'border-cyan-300/50' },
+    { name: 'orders', x: '42%', y: '28%', color: 'border-amber-300/50' },
+    { name: 'subscriptions', x: '23%', y: '63%', color: 'border-emerald-300/50' },
+    { name: 'products', x: '67%', y: '58%', color: 'border-rose-300/50' },
+  ]
 
+  return (
+    <div className="relative h-full min-h-[500px] overflow-hidden bg-[#101719] text-slate-100 technical-grid">
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 900 520" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 210 150 C 320 110 335 215 430 220" fill="none" stroke="rgb(103 232 249 / 0.7)" strokeWidth="2" strokeDasharray="7 8" />
+        <path d="M 300 360 C 420 380 560 340 650 330" fill="none" stroke="rgb(110 231 183 / 0.65)" strokeWidth="2" strokeDasharray="7 8" />
+        <path d="M 520 255 C 610 230 650 260 700 315" fill="none" stroke="rgb(252 211 77 / 0.7)" strokeWidth="2" strokeDasharray="7 8" />
+      </svg>
+      {tables.map((table) => (
+        <div
+          key={table.name}
+          className={`absolute w-[210px] rounded-lg border ${table.color} bg-[#111d21]/95 shadow-2xl`}
+          style={{ left: table.x, top: table.y }}
+        >
+          <div className="border-b border-white/10 px-3 py-2 text-sm font-semibold">{table.name}</div>
+          <div className="space-y-1 p-3 font-mono text-[11px] text-slate-300">
+            <div className="flex justify-between"><span className="text-amber-200">id</span><span>uuid</span></div>
+            <div className="flex justify-between"><span>{table.name === 'orders' ? 'user_id' : 'created_at'}</span><span>{table.name === 'orders' ? 'uuid' : 'timestamp'}</span></div>
+            <div className="flex justify-between"><span>{table.name === 'products' ? 'sku' : 'status'}</span><span>varchar</span></div>
+          </div>
+        </div>
+      ))}
+      <div className="absolute bottom-4 left-4 rounded-lg border border-white/10 bg-black/25 p-3 text-xs text-slate-400 backdrop-blur">
+        Drag to pan. Scroll to zoom. Export when ready.
+      </div>
+    </div>
+  )
+}
+
+function GitVisual() {
+  return (
+    <div className="grid h-full min-h-[500px] bg-[#101719] text-slate-100 lg:grid-cols-[300px_1fr]">
+      <aside className="border-b border-white/10 bg-black/20 p-5 lg:border-b-0 lg:border-r">
+        <div className="mb-5 flex items-center gap-2 text-sm font-semibold"><GitBranch className="h-4 w-4 text-primary" /> main</div>
+        {[
+          ['Added', '0004_add_subscriptions.sql', 'text-emerald-300'],
+          ['Modified', 'schema.json', 'text-amber-300'],
+          ['Generated', 'drift-report.md', 'text-cyan-300'],
+        ].map(([state, file, color]) => (
+          <div key={file} className="mb-3 rounded-lg border border-white/10 bg-white/[0.03] p-3">
+            <div className={`mb-1 text-xs font-semibold ${color}`}>{state}</div>
+            <div className="truncate font-mono text-xs text-slate-300">{file}</div>
+          </div>
+        ))}
+      </aside>
+      <main className="p-5">
+        <div className="mb-4 flex items-center gap-2 text-sm font-semibold"><FileDiff className="h-4 w-4 text-amber-300" /> Migration preview</div>
+        <pre className="overflow-hidden rounded-lg border border-white/10 bg-black/28 p-4 font-mono text-[12px] leading-6 text-slate-200">
+          <code>{`+ CREATE TABLE subscriptions (
++   id UUID PRIMARY KEY,
++   user_id UUID NOT NULL REFERENCES users(id),
++   plan VARCHAR(32) NOT NULL,
++   status VARCHAR(24) DEFAULT 'active'
++ );
+
+~ ALTER TABLE orders
+~   ADD COLUMN subscription_id UUID;`}</code>
+        </pre>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          {['Stage migration', 'Commit schema', 'Push branch'].map((item, index) => (
+            <div key={item} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+              <div className="mb-2 text-xs text-slate-500">Step {index + 1}</div>
+              <div className="text-sm font-semibold">{item}</div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  )
+}
+
+function AIVisual() {
+  return (
+    <div className="grid h-full min-h-[500px] bg-[#101719] text-slate-100 lg:grid-cols-[1fr_320px]">
+      <main className="p-5">
+        <div className="mb-4 flex items-center gap-2 text-sm font-semibold"><Bot className="h-4 w-4 text-cyan-200" /> Assistant draft</div>
+        <div className="space-y-4">
+          <div className="max-w-xl rounded-2xl rounded-tl-sm border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-300">
+            Show customers whose monthly spend dropped by more than 20% after their last subscription change.
+          </div>
+          <div className="rounded-2xl rounded-tr-sm border border-cyan-300/20 bg-cyan-300/8 p-4">
+            <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-cyan-100"><Sparkles className="h-4 w-4" /> Suggested SQL</div>
+            <pre className="overflow-hidden font-mono text-[12px] leading-6 text-slate-200">
+              <code>{`SELECT u.email, s.plan, revenue_delta
+FROM subscription_changes s
+JOIN users u ON u.id = s.user_id
+WHERE revenue_delta < -0.20
+ORDER BY changed_at DESC;`}</code>
+            </pre>
+          </div>
+        </div>
+      </main>
+      <aside className="border-t border-white/10 bg-black/20 p-5 lg:border-l lg:border-t-0">
+        <div className="mb-4 flex items-center gap-2 text-sm font-semibold"><MessageSquareText className="h-4 w-4 text-amber-300" /> Notes</div>
+        {['Uses current schema context', 'Explains joins before you run', 'Requires your configured AI provider'].map((item) => (
+          <div key={item} className="mb-3 rounded-lg border border-white/10 bg-white/[0.03] p-3 text-sm text-slate-300">{item}</div>
+        ))}
+        <p className="mt-6 text-xs leading-5 text-slate-500">
+          Demonstration only. No query is executed from this website preview.
+        </p>
+      </aside>
+    </div>
+  )
+}
+
+const visuals: Record<TabId, ReactNode> = {
+  sql: <SQLVisual />,
+  diagram: <DiagramVisual />,
+  git: <GitVisual />,
+  ai: <AIVisual />,
+}
+
+export function Product() {
+  const [activeTab, setActiveTab] = useState<TabId>('sql')
+  const active = tabs.find((tab) => tab.id === activeTab) ?? tabs[0]
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <section id="product" className="bg-background py-24 sm:py-28">
+      <div className="section-shell">
+        <div className="mb-12 grid gap-8 lg:grid-cols-[0.78fr_1fr] lg:items-end">
+          <div>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Interactive product showcase</p>
+            <h2 className="max-w-3xl font-display text-4xl font-semibold leading-tight sm:text-5xl">
+              One workspace for the database tasks developers repeat every day.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+            Switch through the preview to see how RelWave brings SQL, diagrams, schema diffs, migrations, and AI-assisted query drafting into one desktop flow.
+          </p>
+        </div>
+
+        <div className="overflow-hidden rounded-2xl border border-border bg-card surface-shadow">
+          <div className="grid border-b border-border bg-muted/35 p-2 sm:grid-cols-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex min-h-12 items-center justify-center gap-2 rounded-md px-3 text-sm font-semibold transition-colors ${
+                  activeTab === tab.id ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:bg-background/55 hover:text-foreground'
+                }`}
+                aria-pressed={activeTab === tab.id}
+              >
+                <tab.icon className="h-4 w-4" />
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid lg:grid-cols-[330px_1fr]">
+            <div className="border-b border-border bg-background p-6 lg:border-b-0 lg:border-r lg:p-8">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">{active.eyebrow}</p>
+              <h3 className="font-display text-3xl font-semibold leading-tight">{active.title}</h3>
+              <p className="mt-5 text-base leading-7 text-muted-foreground">{active.description}</p>
+            </div>
+            <div className="min-w-0">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  exit={shouldReduceMotion ? undefined : { opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {visuals[activeTab]}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

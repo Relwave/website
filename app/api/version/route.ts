@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
     const release = await fetch(
         "https://api.github.com/repos/Relwave/relwave-app/releases/latest"
     ).then(res => res.json());

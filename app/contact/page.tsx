@@ -3,13 +3,9 @@ import { motion } from 'framer-motion'
 import { Header } from '@/components/header'
 import {
   Mail,
-  Twitter,
-  MessageSquare,
   Heart,
   Bug,
   LifeBuoy,
-  Send,
-  Github
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'

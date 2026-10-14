@@ -1,79 +1,86 @@
 'use client'
-import { motion } from 'framer-motion'
-import { Link2, Search, DatabaseZap, GitMerge, ArrowRight } from 'lucide-react'
+
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowRight, DatabaseZap, GitMerge, Link2, Search } from 'lucide-react'
+
+const steps = [
+  {
+    title: 'Connect',
+    description: 'Open local or remote database connections, including SSH tunnel workflows represented in the app.',
+    icon: Link2,
+  },
+  {
+    title: 'Explore',
+    description: 'Inspect tables, relationships, and results through schema navigation, ER diagrams, and SQL views.',
+    icon: Search,
+  },
+  {
+    title: 'Modify',
+    description: 'Use migration workflows to preview database structure changes before applying them.',
+    icon: DatabaseZap,
+  },
+  {
+    title: 'Version',
+    description: 'Track schema and migration files in Git so database changes move with your codebase.',
+    icon: GitMerge,
+  },
+]
 
 export function CoreWorkflow() {
-  const steps = [
-    {
-      title: 'Connect',
-      description: 'Auto-discover local databases or connect via SSH tunnels securely.',
-      icon: Link2,
-      color: 'text-blue-500',
-      bg: 'bg-blue-500/10'
-    },
-    {
-      title: 'Explore',
-      description: 'Visualize schema relationships and query data without writing SQL.',
-      icon: Search,
-      color: 'text-emerald-500',
-      bg: 'bg-emerald-500/10'
-    },
-    {
-      title: 'Modify',
-      description: 'Design schema changes safely with instant migration generation.',
-      icon: DatabaseZap,
-      color: 'text-purple-500',
-      bg: 'bg-purple-500/10'
-    },
-    {
-      title: 'Version',
-      description: 'Commit schema changes and branch your database like code.',
-      icon: GitMerge,
-      color: 'text-rose-500',
-      bg: 'bg-rose-500/10'
-    }
-  ]
+  const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="py-24 px-6 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">The Database Workflow</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Relwave unifies the entire database lifecycle into a single, seamless developer experience.
+    <section id="workflow" className="relative overflow-hidden border-y border-border bg-muted/25 py-24 sm:py-28">
+      <div className="section-shell">
+        <div className="mx-auto mb-14 max-w-3xl text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Database workflow visualization</p>
+          <h2 className="font-display text-4xl font-semibold leading-tight sm:text-5xl">
+            From connection to versioned schema change.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-muted-foreground">
+            RelWave is organized around the loop developers actually follow: understand the database, change it carefully, and keep the change reviewable.
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-start justify-between relative">
-          {/* Connecting line for desktop */}
-          <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -z-10" />
-          
-          {steps.map((step, i) => (
-            <div key={step.title} className="flex-1 flex flex-col items-center text-center relative px-4 w-full md:w-auto mb-12 md:mb-0 group">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+        <div className="relative rounded-2xl border border-border bg-card p-4 surface-shadow sm:p-8">
+          <svg className="absolute inset-0 hidden h-full w-full md:block" viewBox="0 0 1100 360" preserveAspectRatio="none" aria-hidden="true">
+            <motion.path
+              d="M 145 180 C 270 90 360 90 485 180 S 700 270 825 180 S 960 90 1030 180"
+              fill="none"
+              stroke="currentColor"
+              className="text-primary/35"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray="12 12"
+              initial={shouldReduceMotion ? false : { pathLength: 0 }}
+              whileInView={shouldReduceMotion ? undefined : { pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+            />
+          </svg>
+
+          <div className="relative grid gap-4 md:grid-cols-4">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="flex flex-col items-center"
+                transition={{ delay: index * 0.1 }}
+                className="rounded-xl border border-border bg-background p-5"
               >
-                <div className={`w-24 h-24 rounded-2xl ${step.bg} border border-border/50 flex items-center justify-center mb-6 shadow-sm group-hover:scale-105 transition-transform duration-300`}>
-                  <step.icon className={`w-10 h-10 ${step.color}`} />
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  {index < steps.length - 1 && <ArrowRight className="h-4 w-4 text-muted-foreground md:hidden" />}
+                  <span className="font-mono text-xs text-muted-foreground">0{index + 1}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed max-w-[200px]">
-                  {step.description}
-                </p>
+                <h3 className="font-display text-xl font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{step.description}</p>
               </motion.div>
-              
-              {/* Arrow for mobile (between steps) */}
-              {i < steps.length - 1 && (
-                <div className="md:hidden mt-8 text-border">
-                  <ArrowRight className="w-6 h-6 rotate-90" />
-                </div>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

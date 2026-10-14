@@ -30,20 +30,20 @@ export function DownloadCard({ target, isRecommended }: DownloadCardProps) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`relative flex flex-col p-6 md:p-8 rounded-3xl border transition-all duration-300 ${isRecommended
-        ? 'bg-card/80 border-primary/40 shadow-[0_0_40px_-15px_rgba(var(--primary),0.3)]'
-        : 'bg-card/30 border-border/50 hover:bg-card/50 hover:border-border/80'
+      className={`relative flex flex-col rounded-2xl border p-6 transition-all duration-300 md:p-8 ${isRecommended
+        ? 'bg-card border-primary/45 surface-shadow'
+        : 'bg-card/70 border-border hover:bg-card hover:border-border/90'
         } backdrop-blur-xl`}
     >
       {isRecommended && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-lg">
+        <div className="absolute -top-4 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-md bg-primary px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-lg">
           <Check className="w-3 h-3" />
           Recommended for your OS
         </div>
       )}
 
       <div className="flex items-center gap-4 mb-6">
-        <div className={`p-3 rounded-2xl ${isRecommended ? 'bg-primary/20 text-primary' : 'bg-muted text-muted-foreground'}`}>
+        <div className={`rounded-lg p-3 ${isRecommended ? 'bg-primary/20 text-primary' : 'bg-muted text-muted-foreground'}`}>
           <Icon className="w-8 h-8" />
         </div>
         <div>
@@ -83,7 +83,7 @@ export function DownloadCard({ target, isRecommended }: DownloadCardProps) {
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider font-semibold">CLI Installation</span>
           </div>
-          <div className="relative group bg-background/50 rounded-xl border border-border/50 overflow-hidden">
+          <div className="relative group overflow-hidden rounded-lg border border-border/50 bg-background/50">
             <pre className="p-4 text-[10px] md:text-xs font-mono text-muted-foreground whitespace-pre-wrap break-all">
               <code>{target.cliCommand}</code>
             </pre>

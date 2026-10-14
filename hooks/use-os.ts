@@ -11,15 +11,15 @@ export function useOS() {
     // Avoid hydration mismatch by checking OS only on client mount
     if (typeof window !== 'undefined') {
       const userAgent = window.navigator.userAgent.toLowerCase();
+      let detectedOS: OS = 'unknown';
       if (userAgent.indexOf('win') !== -1) {
-        setOS('windows');
+        detectedOS = 'windows';
       } else if (userAgent.indexOf('linux') !== -1) {
-        setOS('linux');
+        detectedOS = 'linux';
       } else if (userAgent.indexOf('mac') !== -1) {
-        setOS('mac');
-      } else {
-        setOS('unknown');
+        detectedOS = 'mac';
       }
+      window.setTimeout(() => setOS(detectedOS), 0);
     }
   }, []);
 

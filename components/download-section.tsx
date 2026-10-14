@@ -4,28 +4,26 @@ import { motion } from 'framer-motion'
 import { downloadTargets } from '@/content/downloadTargets'
 import { DownloadCard } from './download-card'
 import { useOS } from '@/hooks/use-os'
-import { Code2, Database, ShieldCheck, Laptop } from 'lucide-react'
+import { Code2, Database, Github, Laptop } from 'lucide-react'
+import Link from 'next/link'
 
 export function DownloadSection() {
   const os = useOS()
 
   return (
-    <section className="py-24 px-6 relative bg-background border-t border-border/40 overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-primary/5 rounded-[100%] blur-[120px] -z-10" />
-
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-            Download RelWave
+    <section id="download" className="relative overflow-hidden bg-background py-24 sm:py-28">
+      <div className="section-shell">
+        <div className="mx-auto mb-14 max-w-3xl text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">Open source desktop app</p>
+          <h2 className="font-display text-4xl font-semibold leading-tight sm:text-5xl">
+            Download RelWave for Windows or Linux.
           </h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-            Get started in seconds on Windows or Linux. <br className="hidden sm:block" />
-            Open source. Local-first. Built for developers.
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+            Install the native app, inspect the source on GitHub, or follow the release feed for new builds.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto w-full">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
           {downloadTargets.map((target) => (
             <DownloadCard 
               key={target.id} 
@@ -35,20 +33,21 @@ export function DownloadSection() {
           ))}
         </div>
 
-        {/* Trust Row */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-medium text-muted-foreground"
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-medium text-muted-foreground"
         >
           <div className="flex items-center gap-2">
             <Code2 className="w-4 h-4 text-primary" />
             <span>Open Source</span>
           </div>
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-primary" />
-            <span>Local First</span>
+            <Github className="w-4 h-4 text-primary" />
+            <Link href="https://github.com/Relwave/relwave-app" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+              GitHub Repository
+            </Link>
           </div>
           <div className="flex items-center gap-2">
             <Laptop className="w-4 h-4 text-primary" />
