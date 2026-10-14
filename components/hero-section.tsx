@@ -50,9 +50,8 @@ function HeroWorkspace() {
               {rows.map((row, index) => (
                 <div
                   key={row}
-                  className={`flex items-center justify-between rounded-md border px-3 py-2 text-sm ${
-                    index === 1 ? 'border-primary/40 bg-primary/10 text-foreground' : 'border-transparent text-muted-foreground'
-                  }`}
+                  className={`flex items-center justify-between rounded-md border px-3 py-2 text-sm ${index === 1 ? 'border-primary/40 bg-primary/10 text-foreground' : 'border-transparent text-muted-foreground'
+                    }`}
                 >
                   <span>{row}</span>
                   <span className="font-mono text-[10px]">{index === 1 ? 'FK' : `${index + 3}`}</span>
@@ -240,6 +239,37 @@ export function HeroSection() {
         <div className="lg:pl-4">
           <HeroWorkspace />
         </div>
+      </div>
+
+      <div className="section-shell flex flex-wrap items-center justify-center gap-4 py-6 sm:justify-start">
+        <a
+          href="https://backlinklog.com/listing/relwave.tech?utm_source=backlinklog&utm_medium=badge"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="RelWave listed on BacklinkLog"
+        >
+          <Image
+            src="https://backlinklog.com/badge/relwave.tech.svg"
+            alt="Listed on BacklinkLog"
+            height={54}
+            width={180}
+            className="h-[54px] w-auto transition-opacity hover:opacity-90"
+          />
+        </a>
+        <a
+          href="https://www.producthunt.com/products/relwave?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-relwave"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="RelWave on Product Hunt"
+        >
+          <Image
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1187949&theme=light&t=1783184136158"
+            alt="RelWave - A local-first database client with Git-powered workflows | Product Hunt"
+            height={54}
+            width={180}
+            className="h-[54px] w-auto transition-opacity hover:opacity-90"
+          />
+        </a>
       </div>
 
       <div className="section-shell flex flex-wrap items-center justify-center gap-4 border-y border-border/70 py-5 text-sm text-muted-foreground sm:justify-between">
