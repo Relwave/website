@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
-  Braces,
   CheckCircle2,
   Database,
   Download,
@@ -16,6 +15,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { databases } from '@/lib/databases'
 
 function HeroWorkspace() {
   const shouldReduceMotion = useReducedMotion()
@@ -224,7 +224,7 @@ export function HeroSection() {
             className="mt-9 grid grid-cols-3 gap-4 text-sm"
           >
             {[
-              ['4', 'database engines'],
+              ['6', 'database engines'],
               ['Git', 'schema workflows'],
               ['Tauri', 'desktop runtime'],
             ].map(([value, label]) => (
@@ -274,8 +274,8 @@ export function HeroSection() {
 
       <div className="section-shell flex flex-wrap items-center justify-center gap-4 border-y border-border/70 py-5 text-sm text-muted-foreground sm:justify-between">
         <span className="flex items-center gap-2 font-medium">
-          <Braces className="h-4 w-4 text-primary" />
-          PostgreSQL, MySQL, MariaDB, and SQLite
+          <Database className="h-4 w-4 text-primary" />
+          {databases.map((db) => db.name).join(', ')}
         </span>
         <span>Local app. Native bridge. Git-aware schema workflows.</span>
         <Image src="/icon.png" alt="" width={22} height={22} className="hidden opacity-70 sm:block" />

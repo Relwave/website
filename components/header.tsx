@@ -2,7 +2,9 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import type { MouseEvent } from 'react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from './theme-provider'
 import { Github, Menu, Moon, Sun, X } from 'lucide-react'
@@ -15,15 +17,46 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Product', href: '/#product' },
-  { label: 'Workflow', href: '/#workflow' },
-  { label: 'Architecture', href: '/#architecture' },
+  { label: 'Product', href: '#product' },
+  { label: 'Workflow', href: '#workflow' },
+  { label: 'Architecture', href: '#architecture' },
   {label:"Contact", href:"/contact"},
 ]
 
 export function Header() {
   const { isDark, toggleTheme, mounted } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (pathname !== '/') return
+
+    const targetId = window.sessionStorage.getItem('relwave-scroll-target')
+    if (!targetId) return
+
+    window.sessionStorage.removeItem('relwave-scroll-target')
+    requestAnimationFrame(() => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [pathname])
+
+  function handleSectionNavigation(event: MouseEvent<HTMLAnchorElement>, href: string) {
+    const targetId = href.slice(1)
+    if (!href.startsWith('#')) return
+
+    event.preventDefault()
+    setMenuOpen(false)
+
+    if (pathname !== '/') {
+      window.sessionStorage.setItem('relwave-scroll-target', targetId)
+      router.push('/')
+      return
+    }
+
+    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.history.replaceState(null, '', window.location.pathname + window.location.search)
+  }
 
   return (
     <motion.header
@@ -44,6 +77,7 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
+              onClick={(event) => handleSectionNavigation(event, item.href)}
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
               className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
@@ -75,7 +109,7 @@ export function Header() {
             {mounted && isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </Button>
           <Button asChild className="hidden h-9 rounded-md px-4 font-semibold sm:inline-flex" data-umami-event="download_header">
-            <Link href="/#download">Download</Link>
+            <Link href="#download" onClick={(event) => handleSectionNavigation(event, '#download')}>Download</Link>
           </Button>
           <Button
             size="icon"
@@ -98,9 +132,9 @@ export function Header() {
               <Link
                 key={item.label}
                 href={item.href}
+                onClick={(event) => handleSectionNavigation(event, item.href)}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noopener noreferrer' : undefined}
-                onClick={() => setMenuOpen(false)}
                 className="rounded-md px-3 py-3 text-sm font-medium text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
               >
                 {item.label}
@@ -116,7 +150,7 @@ export function Header() {
               GitHub
             </Link>
             <Button asChild className="mt-2 h-11 w-full">
-              <Link href="/#download" onClick={() => setMenuOpen(false)}>
+              <Link href="#download" onClick={(event) => handleSectionNavigation(event, '#download')}>
                 Download RelWave
               </Link>
             </Button>
